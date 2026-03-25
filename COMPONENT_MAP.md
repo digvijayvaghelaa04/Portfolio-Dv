@@ -1,0 +1,612 @@
+# 🗺️ Component Architecture Map
+
+Visual guide to understanding how all components work together.
+
+---
+
+## 🏗️ Application Structure
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                         App.tsx                             │
+│                     (Main Container)                        │
+│                                                             │
+│  ┌───────────────────────────────────────────────────────┐ │
+│  │                    Navbar.tsx                         │ │
+│  │              (Sticky Navigation)                      │ │
+│  │  • Logo  • Menu Items  • CTA Button  • Mobile Menu   │ │
+│  └───────────────────────────────────────────────────────┘ │
+│                                                             │
+│  ┌───────────────────────────────────────────────────────┐ │
+│  │                   <main> sections                     │ │
+│  │                                                       │ │
+│  │  ┌─────────────────────────────────────────────────┐ │ │
+│  │  │            Hero.tsx                             │ │ │
+│  │  │  • Animated Background                          │ │ │
+│  │  │  • Name & Title                                 │ │ │
+│  │  │  • Description                                  │ │ │
+│  │  │  • CTA Buttons                                  │ │ │
+│  │  │  • Social Links                                 │ │ │
+│  │  └─────────────────────────────────────────────────┘ │ │
+│  │                                                       │ │
+│  │  ┌─────────────────────────────────────────────────┐ │ │
+│  │  │            About.tsx                            │ │ │
+│  │  │  • Bio Section                                  │ │ │
+│  │  │  • Statistics Grid                              │ │ │
+│  │  │  • Values Cards                                 │ │ │
+│  │  │  • Interests Tags                               │ │ │
+│  │  └─────────────────────────────────────────────────┘ │ │
+│  │                                                       │ │
+│  │  ┌─────────────────────────────────────────────────┐ │ │
+│  │  │            Skills.tsx                           │ │ │
+│  │  │  • Tab Navigation                               │ │ │
+│  │  │  • Skill Cards (with progress bars)            │ │ │
+│  │  │  • Frontend / Backend / Tools                   │ │ │
+│  │  └─────────────────────────────────────────────────┘ │ │
+│  │                                                       │ │
+│  │  ┌─────────────────────────────────────────────────┐ │ │
+│  │  │            Projects.tsx                         │ │ │
+│  │  │  • Filter Buttons                               │ │ │
+│  │  │  • Project Cards Grid                           │ │ │
+│  │  │  • Live Demo & GitHub Links                     │ │ │
+│  │  └─────────────────────────────────────────────────┘ │ │
+│  │                                                       │ │
+│  │  ┌─────────────────────────────────────────────────┐ │ │
+│  │  │            Experience.tsx                       │ │ │
+│  │  │  • Timeline Layout                              │ │ │
+│  │  │  • Work/Education Cards                         │ │ │
+│  │  │  • Achievement Bullets                          │ │ │
+│  │  └─────────────────────────────────────────────────┘ │ │
+│  │                                                       │ │
+│  │  ┌─────────────────────────────────────────────────┐ │ │
+│  │  │            Achievements.tsx                     │ │ │
+│  │  │  • Certification Cards                          │ │ │
+│  │  │  • Award Badges                                 │ │ │
+│  │  │  • Issuer & Date Info                           │ │ │
+│  │  └─────────────────────────────────────────────────┘ │ │
+│  │                                                       │ │
+│  │  ┌─────────────────────────────────────────────────┐ │ │
+│  │  │            Contact.tsx                          │ │ │
+│  │  │  • Contact Form (with validation)               │ │ │
+│  │  │  • Contact Info Cards                           │ │ │
+│  │  │  • Social Media Links                           │ │ │
+│  │  └─────────────────────────────────────────────────┘ │ │
+│  │                                                       │ │
+│  └───────────────────────────────────────────────────────┘ │
+│                                                             │
+│  ┌───────────────────────────────────────────────────────┐ │
+│  │                    Footer.tsx                         │ │
+│  │  • Brand Info  • Quick Links  • Social  • Copyright  │ │
+│  └───────────────────────────────────────────────────────┘ │
+│                                                             │
+│  ┌───────────────────────────────────────────────────────┐ │
+│  │              Scroll-to-Top Button                     │ │
+│  │                (Fixed Position)                       │ │
+│  └───────────────────────────────────────────────────────┘ │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 📊 Data Flow Diagram
+
+```
+┌──────────────────────────────────────────────────────────┐
+│         portfolio-data.ts (Central Data Store)           │
+│                                                          │
+│  • personal      • social        • about                │
+│  • skills        • projects      • experience           │
+│  • achievements  • testimonials                         │
+└──────────────────────────────────────────────────────────┘
+                           │
+                           ↓
+         ┌─────────────────┴─────────────────┐
+         │                                   │
+         ↓                                   ↓
+┌─────────────────┐                 ┌─────────────────┐
+│  Hero.tsx       │                 │  About.tsx      │
+│  • personal     │                 │  • about        │
+│  • social       │                 │  • personal     │
+└─────────────────┘                 └─────────────────┘
+         │                                   │
+         ↓                                   ↓
+┌─────────────────┐                 ┌─────────────────┐
+│  Skills.tsx     │                 │  Projects.tsx   │
+│  • skills       │                 │  • projects     │
+└─────────────────┘                 └─────────────────┘
+         │                                   │
+         ↓                                   ↓
+┌─────────────────┐                 ┌─────────────────┐
+│ Experience.tsx  │                 │ Achievements.tsx│
+│  • experience   │                 │  • achievements │
+└─────────────────┘                 └─────────────────┘
+         │                                   │
+         ↓                                   ↓
+┌─────────────────┐                 ┌─────────────────┐
+│  Contact.tsx    │                 │  Footer.tsx     │
+│  • personal     │                 │  • personal     │
+│  • social       │                 │  • social       │
+└─────────────────┘                 └─────────────────┘
+```
+
+---
+
+## 🎨 Section Breakdown
+
+### 1️⃣ Hero Section
+
+```
+┌─────────────────────────────────────────────────────┐
+│                  HERO SECTION                       │
+│                                                     │
+│  Background Elements:                               │
+│  ┌─────────────────────────────────────────────┐  │
+│  │ • Animated Grid Pattern                     │  │
+│  │ • Floating Orbs (2) with pulse animation    │  │
+│  │ • Gradient Overlays                         │  │
+│  └─────────────────────────────────────────────┘  │
+│                                                     │
+│  Content:                                           │
+│  ┌─────────────────────────────────────────────┐  │
+│  │ [●] Available for projects                  │  │
+│  │                                             │  │
+│  │       Hi, I'm [Alex Morgan]                │  │
+│  │       ───────────────────                  │  │
+│  │    Full-Stack Developer                     │  │
+│  │                                             │  │
+│  │    Transforming ideas into elegant...      │  │
+│  │                                             │  │
+│  │  [View My Work] [Get In Touch]             │  │
+│  │                                             │  │
+│  │     [GitHub] [LinkedIn] [Email]            │  │
+│  └─────────────────────────────────────────────┘  │
+│                                                     │
+│                  [↓] Scroll                         │
+└─────────────────────────────────────────────────────┘
+```
+
+**Key Features**:
+- Full viewport height
+- Animated gradient text
+- Pulsing availability badge
+- Dual CTA buttons
+- Social media links
+- Scroll indicator
+
+---
+
+### 2️⃣ About Section
+
+```
+┌─────────────────────────────────────────────────────┐
+│                  ABOUT SECTION                      │
+│                                                     │
+│              About Me                               │
+│        Turning Vision Into Reality                  │
+│              ────────                               │
+│                                                     │
+│  ┌──────────────┐  ┌──────────────────────────┐   │
+│  │              │  │                          │   │
+│  │ Personal Bio │  │  ┌────┐  ┌────┐         │   │
+│  │              │  │  │ 5+ │  │47+ │         │   │
+│  │ & Mission    │  │  │Yrs │  │Proj│         │   │
+│  │              │  │  └────┘  └────┘         │   │
+│  │              │  │                          │   │
+│  │ What I Love  │  │  ┌────┐  ┌────┐         │   │
+│  │ [Tags]       │  │  │32+ │  │ ∞  │         │   │
+│  │              │  │  │Clnt│  │Coff│         │   │
+│  └──────────────┘  │  └────┘  └────┘         │   │
+│                    └──────────────────────────┘   │
+│                                                     │
+│  ┌─────────┐ ┌─────────┐ ┌─────────┐             │
+│  │ 💻      │ │ ⚡      │ │ 🎯      │             │
+│  │ Clean   │ │ Perform │ │ Precis  │             │
+│  │ Code    │ │ -ance   │ │ -ion    │             │
+│  └─────────┘ └─────────┘ └─────────┘             │
+└─────────────────────────────────────────────────────┘
+```
+
+**Components**:
+- Bio text area
+- Statistics grid (4 stats)
+- Interest tags
+- Value proposition cards (3)
+
+---
+
+### 3️⃣ Skills Section
+
+```
+┌─────────────────────────────────────────────────────┐
+│                 SKILLS SECTION                      │
+│                                                     │
+│          Skills & Expertise                         │
+│       My Technical Arsenal                          │
+│              ────────                               │
+│                                                     │
+│  [Frontend⚛️] [Backend🚀] [Tools🛠️]               │
+│                                                     │
+│  ┌──────────────────────────────────────────┐     │
+│  │ ⚛️ React.js              95% ████████▓░ │     │
+│  └──────────────────────────────────────────┘     │
+│  ┌──────────────────────────────────────────┐     │
+│  │ 📘 TypeScript            90% ████████▒░░ │     │
+│  └──────────────────────────────────────────┘     │
+│  ┌──────────────────────────────────────────┐     │
+│  │ ▲ Next.js                88% ████████░░░ │     │
+│  └──────────────────────────────────────────┘     │
+│  ┌──────────────────────────────────────────┐     │
+│  │ 🎨 Tailwind CSS          92% ████████▓░░ │     │
+│  └──────────────────────────────────────────┘     │
+│                                                     │
+│  ... and more skills                                │
+└─────────────────────────────────────────────────────┘
+```
+
+**Features**:
+- Tab switching (Frontend/Backend/Tools)
+- Animated progress bars
+- Skill level percentages
+- Icon integration
+- Shimmer effect on bars
+
+---
+
+### 4️⃣ Projects Section
+
+```
+┌─────────────────────────────────────────────────────┐
+│                PROJECTS SECTION                     │
+│                                                     │
+│                  Portfolio                          │
+│             Featured Projects                       │
+│                 ────────                            │
+│                                                     │
+│  [All] [Full-Stack] [AI/ML] [Productivity] [...]   │
+│                                                     │
+│  ┌────────┐ ┌────────┐ ┌────────┐                 │
+│  │ Image  │ │ Image  │ │ Image  │                 │
+│  │────────│ │────────│ │────────│                 │
+│  │Project │ │Project │ │Project │                 │
+│  │Title   │ │Title   │ │Title   │                 │
+│  │        │ │        │ │        │                 │
+│  │Descrip │ │Descrip │ │Descrip │                 │
+│  │-tion   │ │-tion   │ │-tion   │                 │
+│  │        │ │        │ │        │                 │
+│  │[React] │ │[Vue]   │ │[React] │                 │
+│  │[Node]  │ │[Express│ │[Fire   │                 │
+│  │        │ │]       │ │base]   │                 │
+│  │[Demo]🔗│ │[Demo]🔗│ │[Demo]🔗│                 │
+│  └────────┘ └────────┘ └────────┘                 │
+│                                                     │
+│  ... more projects                                  │
+└─────────────────────────────────────────────────────┘
+```
+
+**Components**:
+- Filter buttons
+- Project cards
+- Category badges
+- Tech stack tags
+- Action buttons (Demo, GitHub)
+- Featured indicators
+
+---
+
+### 5️⃣ Experience Section
+
+```
+┌─────────────────────────────────────────────────────┐
+│              EXPERIENCE SECTION                     │
+│                                                     │
+│                   Journey                           │
+│          Experience & Education                     │
+│                 ────────                            │
+│                                                     │
+│  ┌──────────────┐        │                         │
+│  │ 💼 Senior    │        │                         │
+│  │ Dev          │        ● ─── [2022-Present]      │
+│  │ TechCorp     │        │     Role Description     │
+│  └──────────────┘        │     • Achievement 1      │
+│                          │     • Achievement 2      │
+│                          │                          │
+│                          │     ┌──────────────┐    │
+│         [2020-2022] ───  ●     │ Full-Stack   │    │
+│     Role Description     │     │ Developer    │    │
+│     • Achievement 1      │     │ Digital Sol  │    │
+│     • Achievement 2      │     └──────────────┘    │
+│                          │                          │
+│  ┌──────────────┐        │                         │
+│  │ 💼 Frontend  │        ●                         │
+│  │ Dev          │        │                         │
+│  │ StartupHub   │        │                         │
+│  └──────────────┘        │                         │
+│                          │                          │
+│                          │     ┌──────────────┐    │
+│         [2015-2019] ───  ●     │ 🎓 B.S. CS   │    │
+│     Stanford Univ        │     │ Stanford     │    │
+│     • GPA: 3.8/4.0       │     │ University   │    │
+│                          │     └──────────────┘    │
+└─────────────────────────────────────────────────────┘
+```
+
+**Layout**:
+- Vertical timeline
+- Alternating left/right cards
+- Work (💼) vs Education (🎓) icons
+- Connecting line
+- Animated dots
+
+---
+
+### 6️⃣ Achievements Section
+
+```
+┌─────────────────────────────────────────────────────┐
+│            ACHIEVEMENTS SECTION                     │
+│                                                     │
+│              Achievements                           │
+│        Certifications & Awards                      │
+│                ────────                             │
+│                                                     │
+│  ┌─────────┐ ┌─────────┐ ┌─────────┐              │
+│  │ 🏆      │ │ ⭐      │ │ 💻      │              │
+│  │         │ │         │ │         │              │
+│  │ AWS     │ │ Best    │ │ Open    │              │
+│  │ Certif  │ │ Develop │ │ Source  │              │
+│  │ -ied    │ │ Award   │ │ Contrib │              │
+│  │         │ │         │ │         │              │
+│  │ Amazon  │ │ TechCorp│ │ GitHub  │              │
+│  │ 2023    │ │ 2023    │ │ 2020-   │              │
+│  └─────────┘ └─────────┘ └─────────┘              │
+│                                                     │
+│  ┌─────────┐ ┌─────────┐ ┌─────────┐              │
+│  │ ⚛️      │ │ 🎤      │ │ ☁️      │              │
+│  │ React   │ │ Speaker │ │ Google  │              │
+│  │ Certif  │ │ React   │ │ Cloud   │              │
+│  │         │ │ Conf    │ │ Pro     │              │
+│  │ Meta    │ │ React   │ │ Google  │              │
+│  │ 2022    │ │ 2023    │ │ 2022    │              │
+│  └─────────┘ └─────────┘ └─────────┘              │
+└─────────────────────────────────────────────────────┘
+```
+
+**Components**:
+- Achievement cards (3 columns)
+- Icon with rotation animation
+- Title and issuer
+- Date information
+- Description text
+
+---
+
+### 7️⃣ Contact Section
+
+```
+┌─────────────────────────────────────────────────────┐
+│               CONTACT SECTION                       │
+│                                                     │
+│                Get In Touch                         │
+│            Let's Work Together                      │
+│                  ────────                           │
+│                                                     │
+│  ┌───────────────┐  ┌──────────────────────────┐  │
+│  │ Contact Info  │  │ ┌──────────────────────┐ │  │
+│  │               │  │ │ Name: [________]     │ │  │
+│  │ 📧 Email      │  │ │ Email: [________]    │ │  │
+│  │ 📞 Phone      │  │ │ Subject: [________]  │ │  │
+│  │ 📍 Location   │  │ │ Message:             │ │  │
+│  │               │  │ │ [________________]   │ │  │
+│  │ Follow Me     │  │ │ [________________]   │ │  │
+│  │ [GitHub]      │  │ │ [________________]   │ │  │
+│  │ [LinkedIn]    │  │ │                      │ │  │
+│  │ [Twitter]     │  │ │ [Send Message 📤]    │ │  │
+│  └───────────────┘  │ └──────────────────────┘ │  │
+│                    └──────────────────────────┘  │
+└─────────────────────────────────────────────────────┘
+```
+
+**Features**:
+- Contact information cards
+- Form with validation
+- Error states
+- Success/error messages
+- Social media links
+- Loading animation
+
+---
+
+### 8️⃣ Footer
+
+```
+┌─────────────────────────────────────────────────────┐
+│                    FOOTER                           │
+│                                                     │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐           │
+│  │ Brand    │ │ Quick    │ │ Contact  │           │
+│  │          │ │ Links    │ │          │           │
+│  │ Alex M.  │ │ • About  │ │ Email    │           │
+│  │          │ │ • Skills │ │ Phone    │           │
+│  │ Crafting │ │ • Proj   │ │ Location │           │
+│  │ Digital  │ │ • Exp    │ │          │           │
+│  │ Exp...   │ │ • Contact│ │          │           │
+│  │          │ │          │ │          │           │
+│  │ [Social] │ │          │ │          │           │
+│  └──────────┘ └──────────┘ └──────────┘           │
+│                                                     │
+│  ──────────────────────────────────────────        │
+│                                                     │
+│  © 2026 Alex Morgan    Made with ❤️ and React     │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+
+                        [↑]
+                  Scroll to Top
+```
+
+---
+
+## 🔄 State Management
+
+### Component State
+
+```
+Hero.tsx
+├─ No internal state
+└─ Uses portfolio-data directly
+
+About.tsx
+├─ No internal state
+└─ Uses portfolio-data directly
+
+Skills.tsx
+├─ activeTab: string (useState)
+└─ Controls which skill category is shown
+
+Projects.tsx
+├─ filter: string (useState)
+└─ Controls which projects are displayed
+
+Contact.tsx
+├─ formData: object (useState)
+├─ errors: object (useState)
+├─ isSubmitting: boolean (useState)
+└─ submitStatus: string (useState)
+
+Navbar.tsx
+├─ isOpen: boolean (useState)
+├─ hidden: boolean (useState)
+└─ Controlled by scroll position
+```
+
+---
+
+## 🎭 Animation Hooks
+
+### Motion Hooks Used
+
+```typescript
+// Scroll-triggered animations
+const ref = useRef(null);
+const isInView = useInView(ref, { once: true });
+
+// Scroll position tracking
+const { scrollY } = useScroll();
+useMotionValueEvent(scrollY, "change", callback);
+```
+
+**Applied to**:
+- All sections (scroll-triggered)
+- Navbar (hide/show on scroll)
+- Elements (fade in when visible)
+
+---
+
+## 🎨 Style System
+
+### CSS Architecture
+
+```
+theme.css
+├─ Custom CSS variables
+├─ Color tokens
+├─ Dark theme colors
+└─ Spacing/radius tokens
+
+index.css
+├─ Global resets
+├─ Base styles
+└─ Utility classes
+
+tailwind.css
+└─ Tailwind imports
+
+Component styles
+└─ Inline Tailwind classes
+```
+
+---
+
+## 📦 Import Structure
+
+```typescript
+// Typical Section Component
+
+import { motion } from "motion/react";
+import { useInView } from "motion/react";
+import { useRef } from "react";
+import { Icon1, Icon2 } from "lucide-react";
+import { portfolioData } from "../data/portfolio-data";
+
+export function SectionName() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  
+  return (
+    <section ref={ref}>
+      {/* Content */}
+    </section>
+  );
+}
+```
+
+---
+
+## 🎯 Component Responsibilities
+
+### Single Responsibility Principle
+
+Each component has ONE job:
+
+- **Navbar**: Navigation only
+- **Hero**: Introduction only
+- **About**: Personal info only
+- **Skills**: Technical skills only
+- **Projects**: Portfolio showcase only
+- **Experience**: Work history only
+- **Achievements**: Certifications only
+- **Contact**: Communication only
+- **Footer**: Links and info only
+
+---
+
+## 🔗 Component Communication
+
+```
+App.tsx (Parent)
+    │
+    ├─► Navbar (No props needed)
+    │
+    ├─► Hero (No props needed)
+    │
+    ├─► About (No props needed)
+    │
+    ├─► Skills (No props needed)
+    │
+    ├─► Projects (No props needed)
+    │
+    ├─► Experience (No props needed)
+    │
+    ├─► Achievements (No props needed)
+    │
+    ├─► Contact (No props needed)
+    │
+    └─► Footer (No props needed)
+
+All components pull data from:
+portfolio-data.ts (Centralized data)
+```
+
+**Note**: No prop drilling! All data comes from the central data file.
+
+---
+
+This architecture makes the portfolio:
+- ✅ Easy to understand
+- ✅ Simple to maintain
+- ✅ Quick to customize
+- ✅ Scalable for growth
+- ✅ Performance optimized
+
+**Ready to explore the code!** 🚀

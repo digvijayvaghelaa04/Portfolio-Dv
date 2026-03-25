@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digvijay Vaghela – Full Stack Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --dark: #f5f7fa;
+    --accent: #1a3a6b;
+    --accent2: #2e6bc7;
+    --mid: #e8edf5;
+    --surface: #eef1f7;
+    --text: #1a1a2e;
+    --muted: #6b7a99;
+    --border: #d0d8e8;
+  }
+
+  body {
+    background: #e8edf5;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13.5px;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 32px 16px;
+  }
+
+  .cv {
+    width: 794px;
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* --- HEADER --- */
+  .header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: end;
+    padding: 48px 48px 36px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse 60% 120% at 80% -20%, rgba(26,58,107,0.08), transparent 60%);
+    pointer-events: none;
+  }
+
+  .name-block {
+    position: relative;
+  }
+
+  .name-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: #1a1a2e;
+  }
+
+  h1 span {
+    color: var(--accent);
+  }
+
+  .title-badge {
+    margin-top: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #1a3a6b;
+    border: 1px solid #1a3a6b;
+    border-radius: 4px;
+    padding: 6px 14px;
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .title-badge::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: right;
+  }
+
+  .contact-item {
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .contact-item strong {
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  .contact-dot {
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  /* --- BODY --- */
+  .body {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 0;
+  }
+
+  /* LEFT SIDEBAR */
+  .sidebar {
+    padding: 36px 28px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Skills bars */
+  .skill-bar-row {
+    margin-bottom: 12px;
+  }
+
+  .skill-bar-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: 12px;
+    color: var(--text);
+  }
+
+  .skill-bar-track {
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .skill-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #1a3a6b, #2e6bc7);
+    border-radius: 2px;
+    transform-origin: left;
+    animation: growBar 1s ease forwards;
+  }
+
+  @keyframes growBar {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+
+  /* Tech tags */
+  .tag-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    font-size: 10.5px;
+    font-weight: 500;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 3px 9px;
+    letter-spacing: 0.02em;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .tag:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* Info rows */
+  .info-row {
+    margin-bottom: 10px;
+  }
+
+  .info-label {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+
+  .info-value {
+    font-size: 12.5px;
+    color: var(--text);
+  }
+
+  /* Language dots */
+  .lang-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: var(--text);
+  }
+
+  .lang-dots {
+    display: flex;
+    gap: 4px;
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--border);
+    border: 1px solid var(--muted);
+  }
+
+  .dot.filled {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  /* RIGHT MAIN */
+  .main {
+    padding: 36px 36px 36px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  /* Experience */
+  .exp-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    padding-left: 18px;
+  }
+
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    background: var(--dark);
+  }
+
+  .exp-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .exp-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 14.5px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 2px;
+  }
+
+  .exp-company {
+    font-size: 12px;
+    color: var(--accent2);
+    margin-bottom: 6px;
+  }
+
+  .exp-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .exp-date {
+    font-size: 10.5px;
+    color: var(--muted);
+    white-space: nowrap;
+    font-style: italic;
+    padding-top: 4px;
+  }
+
+  /* Education */
+  .edu-item {
+    padding-left: 18px;
+    position: relative;
+    margin-bottom: 18px;
+  }
+
+  .edu-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 6px;
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 2px;
+    transform: rotate(45deg);
+  }
+
+  .edu-degree {
+    font-family: 'Syne', sans-serif;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #1a1a2e;
+  }
+
+  .edu-school {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .edu-year {
+    font-size: 11px;
+    color: var(--accent);
+    margin-top: 2px;
+  }
+
+  /* Soft skills */
+  .soft-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .soft-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .soft-item::before {
+    content: '→';
+    color: var(--accent);
+    font-size: 11px;
+  }
+
+  /* Footer strip */
+  .footer-strip {
+    padding: 14px 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-strip span {
+    font-size: 10.5px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  .footer-strip .accent-text {
+    color: var(--accent);
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+  }
+
+  /* Decorative corner line */
+  .corner-deco {
+    position: absolute;
+    top: 0; right: 0;
+    width: 200px;
+    height: 200px;
+    pointer-events: none;
+    overflow: hidden;
+    opacity: 0.12;
+  }
+
+  .corner-deco svg { width: 100%; height: 100%; }
+
+  @media print {
+    body { padding: 0; background: #0e0e0e; }
+    .cv { width: 794px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cv">
+
+  <!-- Decorative corner -->
+  <div class="corner-deco">
+    <svg viewBox="0 0 200 200" fill="none">
+      <circle cx="200" cy="0" r="60" stroke="#1a3a6b" stroke-width="1"/>
+      <circle cx="200" cy="0" r="100" stroke="#1a3a6b" stroke-width="0.5"/>
+      <circle cx="200" cy="0" r="140" stroke="#1a3a6b" stroke-width="0.5"/>
+    </svg>
+  </div>
+
+  <!-- ====== HEADER ====== -->
+  <header class="header">
+    <div class="name-block">
+      <h1>DIGVIJAY<br><span>VAGHELA</span></h1>
+      <div class="title-badge">Full Stack Developer</div>
+    </div>
+    <div class="contact-list">
+      <div class="contact-item"><span class="contact-dot"></span><strong>635-604-3003</strong></div>
+      <div class="contact-item"><span class="contact-dot"></span><strong>digvijayvahelaa04@gmail.com</strong></div>
+      <div class="contact-item"><span class="contact-dot"></span><a href="https://github.com/digvijayvaghelaa04" target="_blank" style="color:var(--text);text-decoration:none;" onmouseover="this.style.color='#1a3a6b'" onmouseout="this.style.color='#1a1a2e'"><strong>github.com/digvijayvaghelaa04</strong></a></div>
+      <div class="contact-item"><span class="contact-dot"></span><a href="https://www.linkedin.com/in/digvijay-vaghelaa/" target="_blank" style="color:var(--text);text-decoration:none;" onmouseover="this.style.color='#1a3a6b'" onmouseout="this.style.color='#1a1a2e'"><strong>linkedin.com/in/digvijay-vaghelaa</strong></a></div>
+      <div class="contact-item"><span class="contact-dot"></span><strong>Ahmedabad, Gujarat, India 387315</strong></div>
+    </div>
+  </header>
+
+  <!-- ====== BODY ====== -->
+  <div class="body">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <!-- About -->
+      <div>
+        <div class="section-title">About</div>
+        <div class="info-row">
+          <div class="info-label">Date of Birth</div>
+          <div class="info-value">04 / 03 / 2003</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Religion</div>
+          <div class="info-value">Hindu</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Nationality</div>
+          <div class="info-value">Indian</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Location</div>
+          <div class="info-value">Ahmedabad, Gujarat, India</div>
+        </div>
+      </div>
+
+      <!-- Tech Stack -->
+      <div>
+        <div class="section-title">Tech Stack</div>
+
+        <div style="margin-bottom:10px;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)">Frontend</div>
+        <div class="tag-grid" style="margin-bottom:16px">
+          <span class="tag">HTML5</span>
+          <span class="tag">CSS3</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">React.js</span>
+          <span class="tag">Vue.js</span>
+          <span class="tag">Bootstrap</span>
+          <span class="tag">Tailwind</span>
+        </div>
+
+        <div style="margin-bottom:10px;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)">Backend</div>
+        <div class="tag-grid" style="margin-bottom:16px">
+          <span class="tag">Node.js</span>
+          <span class="tag">REST API</span>
+        </div>
+
+        <div style="margin-bottom:10px;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)">Database &amp; Tools</div>
+        <div class="tag-grid">
+          <span class="tag">MongoDB</span>
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">VS Code</span>
+        </div>
+      </div>
+
+      <!-- Software Proficiency -->
+      <div>
+        <div class="section-title">Proficiency</div>
+        <div class="skill-bar-row">
+          <div class="skill-bar-header"><span>React / Node</span><span style="color:var(--accent)">90%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div>
+        </div>
+        <div class="skill-bar-row">
+          <div class="skill-bar-header"><span>MySQL / MongoDB</span><span style="color:var(--accent)">75%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:75%;animation-delay:0.2s"></div></div>
+        </div>
+        <div class="skill-bar-row">
+          <div class="skill-bar-header"><span>Adobe Photoshop</span><span style="color:var(--accent)">65%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:65%;animation-delay:0.3s"></div></div>
+        </div>
+        <div class="skill-bar-row">
+          <div class="skill-bar-header"><span>Microsoft Office</span><span style="color:var(--accent)">85%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%;animation-delay:0.4s"></div></div>
+        </div>
+      </div>
+
+      <!-- Language -->
+      <div>
+        <div class="section-title">Language</div>
+        <div class="lang-row">
+          <span>Gujarati</span>
+          <div class="lang-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+          </div>
+        </div>
+        <div class="lang-row">
+          <span>Hindi</span>
+          <div class="lang-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+          </div>
+        </div>
+        <div class="lang-row">
+          <span>English</span>
+          <div class="lang-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+
+      <!-- Summary -->
+      <div>
+        <div class="section-title">Profile</div>
+        <p style="font-size:13px;color:var(--muted);line-height:1.8">
+          Passionate Full Stack Developer with a strong foundation in both frontend and backend technologies. Currently pursuing an MCA, I build scalable, responsive web applications using modern JavaScript frameworks and server-side technologies. I love turning complex problems into elegant, intuitive digital experiences.
+        </p>
+      </div>
+
+      <!-- Education -->
+      <div>
+        <div class="section-title">Education</div>
+
+        <div class="edu-item">
+          <div class="edu-degree">Master of Computer Applications (MCA)</div>
+          <div class="edu-school">CVM University</div>
+          <div class="edu-year">2024 – Running</div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-degree">Bachelor of Computer Applications (BCA)</div>
+          <div class="edu-school">Sardar Patel University</div>
+          <div class="edu-year">2020 – 2023</div>
+        </div>
+
+      </div>
+
+      <!-- Projects -->
+      <div>
+        <div class="section-title">Projects</div>
+
+        <div class="exp-item">
+          <div>
+            <div class="exp-title">Tech DV <span style="color:var(--accent);font-size:11px;font-weight:400;margin-left:6px">E-Learning Platform</span></div>
+            <div class="exp-company">Full Stack · Personal Project</div>
+            <div class="exp-desc">
+              Designed and developed Tech DV — a full stack e-learning platform where students can access coding courses, track progress, and submit projects. Built with React.js (frontend), Node.js (backend), and MySQL. Features include user authentication, course management dashboard, and an interactive code learning module.
+            </div>
+          </div>
+          <div class="exp-date">2024 – Present</div>
+        </div>
+      </div>
+
+      <!-- Experience -->
+      <div>
+        <div class="section-title">Experience</div>
+
+        <div class="exp-item">
+          <div>
+            <div class="exp-title">Full Stack Developer Intern</div>
+            <div class="exp-company">HN Techno · Ahmedabad, Gujarat</div>
+            <div class="exp-desc">
+              Completed a 6-month internship building and maintaining web applications. Collaborated with senior developers on real-world client projects, implemented REST APIs, designed responsive UI components, and contributed to database architecture using MySQL and MongoDB.
+            </div>
+          </div>
+          <div class="exp-date">6-Month Internship</div>
+        </div>
+
+      </div>
+
+      <!-- Soft Skills -->
+      <div>
+        <div class="section-title">Soft Skills</div>
+        <div class="soft-grid">
+          <div class="soft-item">Active Interactor</div>
+          <div class="soft-item">Strong Decision Maker</div>
+          <div class="soft-item">Good Communication</div>
+          <div class="soft-item">Team Collaborator</div>
+          <div class="soft-item">Problem Solver</div>
+          <div class="soft-item">Fast Learner</div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-strip">
+    <span>Digvijay Vaghela · Full Stack Developer</span>
+    <span>digvijayvahelaa04@gmail.com</span>
+  </div>
+
+</div>
+
+</body>
+</html>
