@@ -6,12 +6,13 @@ import { portfolioData } from "../data/portfolio-data";
 export function Skills() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [activeTab, setActiveTab] = useState<"frontend" | "backend" | "tools">("frontend");
+  const [activeTab, setActiveTab] = useState<"frontend" | "backend" | "tools" | "aiTools">("frontend");
 
   const tabs = [
     { id: "frontend" as const, label: "Frontend", icon: "⚛️" },
     { id: "backend" as const, label: "Backend", icon: "🚀" },
-    { id: "tools" as const, label: "Tools & DevOps", icon: "🛠️" },
+    { id: "tools" as const, label: "Tools", icon: "🛠️" },
+    { id: "aiTools" as const, label: "AI Tools", icon: "🤖" },
   ];
 
   const skills = portfolioData.skills[activeTab];
@@ -20,12 +21,12 @@ export function Skills() {
     <section
       id="skills"
       ref={ref}
-      className="relative py-32 bg-white dark:bg-black overflow-hidden transition-colors duration-300"
+      className="relative py-32 bg-gray-50 dark:bg-[#050505] overflow-hidden transition-colors duration-500"
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-100 dark:from-red-900/10 via-white dark:via-black to-gray-50 dark:to-black" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-100/50 dark:from-indigo-900/10 via-transparent to-transparent" />
       <motion.div
-        className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-600/10 dark:bg-red-600/10 rounded-full blur-[150px]"
+        className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-violet-600/10 dark:bg-violet-600/10 rounded-full blur-[150px]"
         animate={{
           scale: [1, 1.1, 1],
           opacity: [0.1, 0.2, 0.1],
@@ -45,11 +46,11 @@ export function Skills() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-sm uppercase tracking-widest text-blue-600 dark:text-red-500 mb-4">Skills & Expertise</h2>
+          <h2 className="text-sm uppercase tracking-widest text-indigo-500 dark:text-indigo-400 mb-4 font-semibold">Skills & Expertise</h2>
           <h3 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            My <span className="text-blue-600 dark:text-red-500">Technical Arsenal</span>
+            My <span className="text-indigo-600 dark:text-indigo-400">Technical Arsenal</span>
           </h3>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-blue-500 dark:from-red-600 dark:to-red-500 mx-auto rounded-full" />
+          <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 dark:from-indigo-400 dark:to-purple-500 mx-auto rounded-full" />
         </motion.div>
 
         {/* Tabs */}
@@ -63,13 +64,13 @@ export function Skills() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${
+              className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 flex items-center justify-center ${
                 activeTab === tab.id
-                  ? "bg-blue-600 dark:bg-red-600 text-white shadow-lg dark:shadow-[0_0_30px_rgba(220,38,38,0.4)]"
-                  : "bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 hover:border-blue-600/50 dark:hover:border-red-600/50 hover:text-gray-900 dark:hover:text-white"
+                  ? "bg-gray-900 dark:bg-white text-white dark:text-gray-900 shadow-md transform scale-105"
+                  : "bg-white dark:bg-[#111] text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20 hover:text-gray-900 dark:hover:text-white"
               }`}
             >
-              <span className="mr-2">{tab.icon}</span>
+              <span className="mr-2 text-xl">{tab.icon}</span>
               {tab.label}
             </button>
           ))}
@@ -85,25 +86,28 @@ export function Skills() {
               transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
               className="group"
             >
-              <div className="p-6 bg-white dark:bg-gradient-to-br dark:from-[#111] dark:to-[#0a0a0a] border border-blue-600/20 dark:border-red-600/20 rounded-2xl hover:border-blue-600/40 dark:hover:border-red-600/40 transition-all duration-300 hover:shadow-xl dark:hover:shadow-[0_0_30px_rgba(220,38,38,0.2)] shadow-md dark:shadow-none">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl">{skill.icon}</span>
-                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white">{skill.name}</h4>
+              <div className="p-6 bg-white dark:bg-[#111]/80 border border-indigo-100 dark:border-white/5  hover:border-indigo-300 dark:hover:border-white/20 transition-all duration-300 rounded-3xl hover:shadow-2xl dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] shadow-sm dark:shadow-none backdrop-blur-sm relative overflow-hidden z-10">
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 dark:from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="relative">
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="flex items-center gap-3">
+                      <span className="text-3xl drop-shadow-sm">{skill.icon}</span>
+                      <h4 className="text-lg font-bold text-gray-900 dark:text-white tracking-wide">{skill.name}</h4>
+                    </div>
+                    <span className="text-indigo-600 dark:text-indigo-400 font-bold text-lg">{skill.level}%</span>
                   </div>
-                  <span className="text-blue-600 dark:text-red-500 font-bold text-lg">{skill.level}%</span>
-                </div>
 
-                {/* Progress Bar */}
-                <div className="relative h-3 bg-gray-100 dark:bg-white/5 rounded-full overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={isInView ? { width: `${skill.level}%` } : {}}
-                    transition={{ duration: 1, delay: 0.4 + index * 0.1, ease: "easeOut" }}
-                    className="absolute top-0 left-0 h-full bg-gradient-to-r from-blue-600 to-blue-500 dark:from-red-600 dark:to-red-500 rounded-full"
-                  >
-                    <div className="absolute inset-0 bg-white/20 animate-shimmer" />
-                  </motion.div>
+                  {/* Premium Progress Bar */}
+                  <div className="relative h-2 bg-gray-100 dark:bg-white/10 rounded-full overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={isInView ? { width: `${skill.level}%` } : {}}
+                      transition={{ duration: 1, delay: 0.4 + index * 0.1, ease: "easeOut" }}
+                      className="absolute top-0 left-0 h-full bg-gradient-to-r from-indigo-500 to-purple-500 dark:from-indigo-400 dark:to-purple-500 rounded-full"
+                    >
+                      <div className="absolute inset-0 bg-white/30 animate-shimmer" />
+                    </motion.div>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -113,21 +117,12 @@ export function Skills() {
 
       <style>{`
         @keyframes shimmer {
-          0% {
-            transform: translateX(-100%);
-          }
-          100% {
-            transform: translateX(100%);
-          }
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
         }
         .animate-shimmer {
           animation: shimmer 2s infinite;
-          background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(255, 255, 255, 0.2),
-            transparent
-          );
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
         }
       `}</style>
     </section>

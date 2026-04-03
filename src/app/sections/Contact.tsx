@@ -116,12 +116,12 @@ export function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="relative py-32 bg-gray-50 dark:bg-black overflow-hidden transition-colors duration-300"
+      className="relative py-32 bg-gray-50 dark:bg-[#050505] overflow-hidden transition-colors duration-500"
     >
       {/* Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-100 dark:from-red-900/10 via-white dark:via-black to-gray-50 dark:to-black" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-100/50 dark:from-indigo-900/10 via-transparent to-transparent" />
       <motion.div
-        className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 dark:bg-red-600/10 rounded-full blur-[150px]"
+        className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-600/10 dark:bg-indigo-600/10 rounded-full blur-[150px]"
         animate={{
           scale: [1, 1.1, 1],
           opacity: [0.1, 0.2, 0.1],
@@ -141,13 +141,13 @@ export function Contact() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-sm uppercase tracking-widest text-blue-600 dark:text-red-500 mb-4">
+          <h2 className="text-sm uppercase tracking-widest text-indigo-500 dark:text-indigo-400 mb-4 font-semibold">
             Get In Touch
           </h2>
           <h3 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            Let's Work <span className="text-blue-600 dark:text-red-500">Together</span>
+            Let's Work <span className="text-indigo-600 dark:text-indigo-400">Together</span>
           </h3>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-blue-500 dark:from-red-600 dark:to-red-500 mx-auto rounded-full" />
+          <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 dark:from-indigo-400 dark:to-purple-500 mx-auto rounded-full" />
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12">
@@ -156,39 +156,40 @@ export function Contact() {
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex flex-col justify-center"
           >
-            <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+            <h4 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 tracking-wide">
               Contact Information
             </h4>
-            <p className="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
+            <p className="text-gray-600 dark:text-gray-400 mb-10 leading-relaxed text-lg">
               Have a project in mind or want to collaborate? Feel free to reach out.
               I'm always open to discussing new opportunities and creative ideas.
             </p>
 
             {/* Contact Details */}
-            <div className="space-y-6 mb-10">
+            <div className="space-y-6 mb-12">
               {contactInfo.map((info, index) => (
                 <motion.div
                   key={info.label}
                   initial={{ opacity: 0, x: -30 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                  className="flex items-start gap-4 group"
+                  className="flex items-center gap-6 group"
                 >
-                  <div className="w-12 h-12 bg-blue-600/10 dark:bg-red-600/10 border border-blue-600/30 dark:border-red-600/30 rounded-lg flex items-center justify-center group-hover:bg-blue-600/20 dark:group-hover:bg-red-600/20 group-hover:border-blue-600/50 dark:group-hover:border-red-600/50 transition-all duration-300">
-                    <info.icon className="w-5 h-5 text-blue-600 dark:text-red-500" />
+                  <div className="w-14 h-14 bg-indigo-50 dark:bg-[#111]/80 border border-indigo-100 dark:border-white/10 rounded-2xl flex items-center justify-center group-hover:bg-indigo-100 dark:group-hover:bg-indigo-500/20 group-hover:border-indigo-300 dark:group-hover:border-indigo-500/50 transition-all duration-300 shadow-sm">
+                    <info.icon className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
                   </div>
                   <div>
-                    <p className="text-gray-500 text-sm mb-1">{info.label}</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm mb-1 font-medium">{info.label}</p>
                     {info.href ? (
                       <a
-                        href={info.href}
-                        className="text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-red-500 transition-colors"
+                         href={info.href}
+                         className="text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-semibold text-lg"
                       >
-                        {info.value}
+                         {info.value}
                       </a>
                     ) : (
-                      <p className="text-gray-900 dark:text-white">{info.value}</p>
+                      <p className="text-gray-900 dark:text-white font-semibold text-lg">{info.value}</p>
                     )}
                   </div>
                 </motion.div>
@@ -197,7 +198,7 @@ export function Contact() {
 
             {/* Social Links */}
             <div>
-              <h5 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+              <h5 className="text-lg font-bold text-gray-900 dark:text-white mb-6">
                 Follow Me
               </h5>
               <div className="flex gap-4">
@@ -210,11 +211,10 @@ export function Contact() {
                     initial={{ opacity: 0, scale: 0 }}
                     animate={isInView ? { opacity: 1, scale: 1 } : {}}
                     transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
-                    className="w-12 h-12 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg flex items-center justify-center hover:bg-blue-600 dark:hover:bg-red-600 hover:border-blue-600 dark:hover:border-red-600 transition-all duration-300 group"
-                    whileHover={{ scale: 1.1, y: -2 }}
+                    className="w-12 h-12 bg-white dark:bg-[#111] border border-gray-200 dark:border-white/10 rounded-2xl flex items-center justify-center hover:bg-gray-900 dark:hover:bg-white hover:border-gray-900 dark:hover:border-white transition-all duration-300 group shadow-sm hover:shadow-lg hover:-translate-y-1"
                     whileTap={{ scale: 0.95 }}
                   >
-                    <social.icon className="w-5 h-5 text-gray-700 dark:text-gray-400 group-hover:text-white transition-colors" />
+                    <social.icon className="w-5 h-5 text-gray-700 dark:text-gray-400 group-hover:text-white dark:group-hover:text-black transition-colors" />
                   </motion.a>
                 ))}
               </div>
@@ -226,12 +226,13 @@ export function Contact() {
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
+            className="bg-white dark:bg-[#111]/80 backdrop-blur-md p-8 md:p-10 rounded-3xl border border-indigo-100 dark:border-white/5 shadow-xl dark:shadow-[0_0_40px_rgba(255,255,255,0.02)]"
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Name */}
               <div>
-                <label htmlFor="name" className="block text-gray-900 dark:text-white mb-2">
-                  Your Name *
+                <label htmlFor="name" className="block text-gray-900 dark:text-gray-300 font-medium mb-2">
+                  Your Name <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -239,20 +240,20 @@ export function Contact() {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 bg-white dark:bg-white/5 border ${
+                  className={`w-full px-5 py-4 bg-gray-50 dark:bg-black/50 border ${
                     errors.name ? "border-red-500" : "border-gray-200 dark:border-white/10"
-                  } rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-blue-600 dark:focus:border-red-600 transition-colors`}
+                  } rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 dark:focus:ring-indigo-400/50 dark:focus:border-indigo-400 transition-all`}
                   placeholder="John Doe"
                 />
                 {errors.name && (
-                  <p className="mt-1 text-red-500 text-sm">{errors.name}</p>
+                  <p className="mt-2 text-red-500 text-sm font-medium">{errors.name}</p>
                 )}
               </div>
 
               {/* Email */}
               <div>
-                <label htmlFor="email" className="block text-gray-900 dark:text-white mb-2">
-                  Your Email *
+                <label htmlFor="email" className="block text-gray-900 dark:text-gray-300 font-medium mb-2">
+                  Your Email <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="email"
@@ -260,20 +261,20 @@ export function Contact() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 bg-white dark:bg-white/5 border ${
+                  className={`w-full px-5 py-4 bg-gray-50 dark:bg-black/50 border ${
                     errors.email ? "border-red-500" : "border-gray-200 dark:border-white/10"
-                  } rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-blue-600 dark:focus:border-red-600 transition-colors`}
+                  } rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 dark:focus:ring-indigo-400/50 dark:focus:border-indigo-400 transition-all`}
                   placeholder="john@example.com"
                 />
                 {errors.email && (
-                  <p className="mt-1 text-red-500 text-sm">{errors.email}</p>
+                  <p className="mt-2 text-red-500 text-sm font-medium">{errors.email}</p>
                 )}
               </div>
 
               {/* Subject */}
               <div>
-                <label htmlFor="subject" className="block text-gray-900 dark:text-white mb-2">
-                  Subject *
+                <label htmlFor="subject" className="block text-gray-900 dark:text-gray-300 font-medium mb-2">
+                  Subject <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -281,34 +282,34 @@ export function Contact() {
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 bg-white dark:bg-white/5 border ${
+                  className={`w-full px-5 py-4 bg-gray-50 dark:bg-black/50 border ${
                     errors.subject ? "border-red-500" : "border-gray-200 dark:border-white/10"
-                  } rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-blue-600 dark:focus:border-red-600 transition-colors`}
+                  } rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 dark:focus:ring-indigo-400/50 dark:focus:border-indigo-400 transition-all`}
                   placeholder="Project Inquiry"
                 />
                 {errors.subject && (
-                  <p className="mt-1 text-red-500 text-sm">{errors.subject}</p>
+                  <p className="mt-2 text-red-500 text-sm font-medium">{errors.subject}</p>
                 )}
               </div>
 
               {/* Message */}
               <div>
-                <label htmlFor="message" className="block text-gray-900 dark:text-white mb-2">
-                  Message *
+                <label htmlFor="message" className="block text-gray-900 dark:text-gray-300 font-medium mb-2">
+                  Message <span className="text-red-500">*</span>
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  rows={6}
-                  className={`w-full px-4 py-3 bg-white dark:bg-white/5 border ${
+                  rows={5}
+                  className={`w-full px-5 py-4 bg-gray-50 dark:bg-black/50 border ${
                     errors.message ? "border-red-500" : "border-gray-200 dark:border-white/10"
-                  } rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-blue-600 dark:focus:border-red-600 transition-colors resize-none`}
+                  } rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 dark:focus:ring-indigo-400/50 dark:focus:border-indigo-400 transition-all resize-none`}
                   placeholder="Tell me about your project..."
                 />
                 {errors.message && (
-                  <p className="mt-1 text-red-500 text-sm">{errors.message}</p>
+                  <p className="mt-2 text-red-500 text-sm font-medium">{errors.message}</p>
                 )}
               </div>
 
@@ -316,17 +317,17 @@ export function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full px-8 py-4 bg-blue-600 dark:bg-red-600 text-white rounded-lg font-semibold hover:bg-blue-700 dark:hover:bg-red-700 transition-all duration-300 hover:shadow-lg dark:hover:shadow-[0_0_30px_rgba(220,38,38,0.4)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 group"
+                className="w-full px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-black rounded-xl font-bold hover:bg-gray-800 dark:hover:bg-gray-200 transition-all duration-300 hover:shadow-xl dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 group mt-4"
               >
                 {isSubmitting ? (
                   <>
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    <div className="w-5 h-5 border-2 border-white/30 dark:border-black/30 border-t-white dark:border-t-black rounded-full animate-spin" />
                     Sending...
                   </>
                 ) : (
                   <>
                     Send Message
-                    <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </>
                 )}
               </button>
@@ -334,9 +335,9 @@ export function Contact() {
               {/* Status Messages */}
               {submitStatus === "success" && (
                 <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="p-4 bg-green-500/10 border border-green-500/30 rounded-lg text-green-600 dark:text-green-400"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="p-4 bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/30 rounded-xl text-emerald-700 dark:text-emerald-400 font-medium text-center"
                 >
                   Message sent successfully! I'll get back to you soon.
                 </motion.div>
@@ -344,9 +345,9 @@ export function Contact() {
 
               {submitStatus === "error" && (
                 <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="p-4 bg-red-500/10 border border-red-500/30 rounded-lg text-red-600 dark:text-red-400"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="p-4 bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/30 rounded-xl text-red-700 dark:text-red-400 font-medium text-center"
                 >
                   Failed to send message. Please try again.
                 </motion.div>
