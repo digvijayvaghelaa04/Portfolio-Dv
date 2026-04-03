@@ -101,6 +101,19 @@ export const portfolioData = {
 
   experience: [
     {
+      id: 4,
+      position: "BCA (Bachelor's of Computer Applications)",
+      company: "Sardar Patel University",
+      location: "Anand, Gujarat",
+      period: "2020 - 2023",
+      type: "education",
+      description: "Successfully completed Bachelor's degree in Computer Applications.",
+      achievements: [
+        "Gained a strong foundation in programming, databases, and general computer science concepts.",
+        "Graduated with excellent academic performance."
+      ],
+    },
+    {
       id: 3,
       position: "MCA (Master of Computer Applications)",
       company: "CVM University",
@@ -125,19 +138,6 @@ export const portfolioData = {
         "Implemented REST APIs and designed responsive modern UI components.",
         "Contributed to strong database architecture utilizing MySQL and MongoDB.",
         "Delivered and deployed multiple end-to-end full stack client projects.",
-      ],
-    },
-    {
-      id: 4,
-      position: "BCA Graduation",
-      company: "Sardar Patel University",
-      location: "Anand, Gujarat",
-      period: "2020 - 2023",
-      type: "education",
-      description: "Successfully completed Bachelor's degree in Computer Applications.",
-      achievements: [
-        "Gained a strong foundation in programming, databases, and general computer science concepts.",
-        "Graduated with excellent academic performance."
       ],
     }
   ],
