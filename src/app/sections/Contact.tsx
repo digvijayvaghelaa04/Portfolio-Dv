@@ -67,7 +67,15 @@ export function Contact() {
         body: JSON.stringify(formData)
       });
 
-      const data = await response.json();
+      // Check if the response is actually JSON. 
+      // If run locally via Vite (npm run dev) without Vercel CLI, /api/contact doesn't exist and might return index.html or empty response.
+      const contentType = response.headers.get("content-type");
+      let data;
+      if (contentType && contentType.includes("application/json")) {
+        data = await response.json();
+      } else {
+        throw new Error("API Route Not Found. If testing locally, run using 'vercel dev' instead of 'npm run dev' to test serverless functions.");
+      }
 
       if (!response.ok) {
         throw new Error(data.message || 'Something went wrong');

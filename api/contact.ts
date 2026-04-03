@@ -61,14 +61,14 @@ export default async function handler(req: any, res: any) {
 
     if (data.error) {
        console.error("Resend API Error:", data.error);
-       return res.status(500).json({ message: 'Failed to send email. Please try again later.' });
+       return res.status(500).json({ message: `Resend Error: ${data.error.message || 'Unknown error'}` });
     }
 
     // 5. Success Flow
     return res.status(200).json({ message: 'Email sent successfully!' });
 
-  } catch (error) {
+  } catch (error: any) {
     console.error('Contact Form Error:', error);
-    return res.status(500).json({ message: 'Internal Server Error' });
+    return res.status(500).json({ message: error.message || 'Internal Server Error' });
   }
 }
