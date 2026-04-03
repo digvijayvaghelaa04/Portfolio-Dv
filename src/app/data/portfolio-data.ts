@@ -1,3 +1,5 @@
+import profileImg from "../../imports/images/IMG_0133.png";
+
 export const portfolioData = {
   personal: {
     name: "Digvijay Vaghela",
@@ -7,7 +9,7 @@ export const portfolioData = {
     email: "digvijayvahelaa04@gmail.com",
     phone: "635-604-3003",
     location: "Ahmedabad, Gujarat, India",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+    avatar: profileImg,
     dateOfBirth: "04 / 03 / 2003",
     religion: "Hindu",
     nationality: "Indian",
@@ -99,6 +101,19 @@ export const portfolioData = {
 
   experience: [
     {
+      id: 3,
+      position: "MCA (Master of Computer Applications)",
+      company: "CVM University",
+      location: "Anand, Gujarat",
+      period: "2024 - Present",
+      type: "education",
+      description: "Currently pursuing Master’s degree focused on advanced software engineering, full stack development, and modern computing technologies.",
+      achievements: [
+        "Focusing on backend development, API design, and database understanding.",
+        "Building practical full-stack projects using modern JavaScript technologies."
+      ],
+    },
+    {
       id: 1,
       position: "Full Stack Developer Intern",
       company: "HN Techno",
@@ -110,6 +125,19 @@ export const portfolioData = {
         "Implemented REST APIs and designed responsive modern UI components.",
         "Contributed to strong database architecture utilizing MySQL and MongoDB.",
         "Delivered and deployed multiple end-to-end full stack client projects.",
+      ],
+    },
+    {
+      id: 4,
+      position: "BCA Graduation",
+      company: "Sardar Patel University",
+      location: "Anand, Gujarat",
+      period: "2020 - 2023",
+      type: "education",
+      description: "Successfully completed Bachelor's degree in Computer Applications.",
+      achievements: [
+        "Gained a strong foundation in programming, databases, and general computer science concepts.",
+        "Graduated with excellent academic performance."
       ],
     }
   ],
