@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef, useState } from "react";
-import { Mail, MapPin, Phone, Send, Github, Linkedin } from "lucide-react";
+import { Mail, MapPin, Phone, Send, Github, Linkedin, CheckCircle, AlertCircle } from "lucide-react";
 import { portfolioData } from "../data/portfolio-data";
 
 export function Contact() {
@@ -13,11 +13,13 @@ export function Contact() {
     email: "",
     subject: "",
     message: "",
+    honeypot: "", // Anti-spam hidden field
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
@@ -28,8 +30,8 @@ export function Contact() {
 
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Invalid email format";
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
     }
 
     if (!formData.subject.trim()) {
@@ -38,8 +40,8 @@ export function Contact() {
 
     if (!formData.message.trim()) {
       newErrors.message = "Message is required";
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = "Message must be at least 10 characters";
+    } else if (formData.message.trim().length < 15) {
+      newErrors.message = "Please provide a bit more detail (min 15 characters)";
     }
 
     setErrors(newErrors);
@@ -49,27 +51,38 @@ export function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!validateForm()) {
-      return;
-    }
+    if (!validateForm()) return;
 
     setIsSubmitting(true);
     setSubmitStatus("idle");
+    setErrorMessage("");
 
-    // Simulate API call
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
 
-      console.log("Form submitted:", formData);
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Something went wrong');
+      }
 
       setSubmitStatus("success");
-      setFormData({ name: "", email: "", subject: "", message: "" });
+      setFormData({ name: "", email: "", subject: "", message: "", honeypot: "" });
 
-      setTimeout(() => {
-        setSubmitStatus("idle");
-      }, 5000);
-    } catch (error) {
+      // Reset success status after a while
+      setTimeout(() => setSubmitStatus("idle"), 6000);
+
+    } catch (error: any) {
+      console.error("Submission failed:", error);
       setSubmitStatus("error");
+      setErrorMessage(error.message || "Failed to send message. Please try again later.");
     } finally {
       setIsSubmitting(false);
     }
@@ -182,12 +195,12 @@ export function Contact() {
                   <div>
                     <p className="text-gray-500 dark:text-gray-400 text-sm mb-1 font-medium">{info.label}</p>
                     {info.href ? (
-                      <a
+                       <a
                          href={info.href}
                          className="text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-semibold text-lg"
-                      >
+                       >
                          {info.value}
-                      </a>
+                       </a>
                     ) : (
                       <p className="text-gray-900 dark:text-white font-semibold text-lg">{info.value}</p>
                     )}
@@ -228,7 +241,19 @@ export function Contact() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="bg-white dark:bg-[#111]/80 backdrop-blur-md p-8 md:p-10 rounded-3xl border border-indigo-100 dark:border-white/5 shadow-xl dark:shadow-[0_0_40px_rgba(255,255,255,0.02)]"
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6 relative">
+              
+              {/* Anti-spam Honeypot Field */}
+              <input
+                type="text"
+                name="honeypot"
+                value={formData.honeypot}
+                onChange={handleChange}
+                style={{ display: "none" }}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+
               {/* Name */}
               <div>
                 <label htmlFor="name" className="block text-gray-900 dark:text-gray-300 font-medium mb-2">
@@ -240,13 +265,16 @@ export function Contact() {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
+                  disabled={isSubmitting}
                   className={`w-full px-5 py-4 bg-gray-50 dark:bg-black/50 border ${
                     errors.name ? "border-red-500" : "border-gray-200 dark:border-white/10"
-                  } rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 dark:focus:ring-indigo-400/50 dark:focus:border-indigo-400 transition-all`}
+                  } rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
                   placeholder="John Doe"
                 />
                 {errors.name && (
-                  <p className="mt-2 text-red-500 text-sm font-medium">{errors.name}</p>
+                  <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-2 text-red-500 text-sm font-medium flex items-center gap-1">
+                    <AlertCircle className="w-4 h-4"/> {errors.name}
+                  </motion.p>
                 )}
               </div>
 
@@ -261,13 +289,16 @@ export function Contact() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
+                  disabled={isSubmitting}
                   className={`w-full px-5 py-4 bg-gray-50 dark:bg-black/50 border ${
                     errors.email ? "border-red-500" : "border-gray-200 dark:border-white/10"
-                  } rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 dark:focus:ring-indigo-400/50 dark:focus:border-indigo-400 transition-all`}
+                  } rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
                   placeholder="john@example.com"
                 />
                 {errors.email && (
-                  <p className="mt-2 text-red-500 text-sm font-medium">{errors.email}</p>
+                  <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-2 text-red-500 text-sm font-medium flex items-center gap-1">
+                    <AlertCircle className="w-4 h-4"/> {errors.email}
+                  </motion.p>
                 )}
               </div>
 
@@ -282,13 +313,16 @@ export function Contact() {
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
+                  disabled={isSubmitting}
                   className={`w-full px-5 py-4 bg-gray-50 dark:bg-black/50 border ${
                     errors.subject ? "border-red-500" : "border-gray-200 dark:border-white/10"
-                  } rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 dark:focus:ring-indigo-400/50 dark:focus:border-indigo-400 transition-all`}
+                  } rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
                   placeholder="Project Inquiry"
                 />
                 {errors.subject && (
-                  <p className="mt-2 text-red-500 text-sm font-medium">{errors.subject}</p>
+                  <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-2 text-red-500 text-sm font-medium flex items-center gap-1">
+                    <AlertCircle className="w-4 h-4"/> {errors.subject}
+                  </motion.p>
                 )}
               </div>
 
@@ -302,27 +336,35 @@ export function Contact() {
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
+                  disabled={isSubmitting}
                   rows={5}
                   className={`w-full px-5 py-4 bg-gray-50 dark:bg-black/50 border ${
                     errors.message ? "border-red-500" : "border-gray-200 dark:border-white/10"
-                  } rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 dark:focus:ring-indigo-400/50 dark:focus:border-indigo-400 transition-all resize-none`}
-                  placeholder="Tell me about your project..."
+                  } rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all resize-none ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  placeholder="Tell me about your project or opportunity..."
                 />
                 {errors.message && (
-                  <p className="mt-2 text-red-500 text-sm font-medium">{errors.message}</p>
+                  <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-2 text-red-500 text-sm font-medium flex items-center gap-1">
+                    <AlertCircle className="w-4 h-4"/> {errors.message}
+                  </motion.p>
                 )}
               </div>
 
               {/* Submit Button */}
               <button
                 type="submit"
-                disabled={isSubmitting}
-                className="w-full px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-black rounded-xl font-bold hover:bg-gray-800 dark:hover:bg-gray-200 transition-all duration-300 hover:shadow-xl dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 group mt-4"
+                disabled={isSubmitting || submitStatus === 'success'}
+                className="w-full px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-black rounded-xl font-bold hover:bg-gray-800 dark:hover:bg-gray-200 transition-all duration-300 hover:shadow-xl dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 group mt-4 relative overflow-hidden"
               >
                 {isSubmitting ? (
                   <>
                     <div className="w-5 h-5 border-2 border-white/30 dark:border-black/30 border-t-white dark:border-t-black rounded-full animate-spin" />
-                    Sending...
+                    Sending securely...
+                  </>
+                ) : submitStatus === 'success' ? (
+                  <>
+                    <CheckCircle className="w-5 h-5 text-emerald-400 dark:text-emerald-500" />
+                    Sent Successfully
                   </>
                 ) : (
                   <>
@@ -332,24 +374,26 @@ export function Contact() {
                 )}
               </button>
 
-              {/* Status Messages */}
+              {/* Status Messages overlay */}
               {submitStatus === "success" && (
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="p-4 bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/30 rounded-xl text-emerald-700 dark:text-emerald-400 font-medium text-center"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-4 bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/30 rounded-xl text-emerald-700 dark:text-emerald-400 font-medium flex items-center gap-3"
                 >
-                  Message sent successfully! I'll get back to you soon.
+                  <CheckCircle className="w-5 h-5 flex-shrink-0" />
+                  <p>Thanks for reaching out! I've received your message and will reply shortly.</p>
                 </motion.div>
               )}
 
               {submitStatus === "error" && (
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="p-4 bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/30 rounded-xl text-red-700 dark:text-red-400 font-medium text-center"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-4 bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/30 rounded-xl text-red-700 dark:text-red-400 font-medium flex items-center gap-3"
                 >
-                  Failed to send message. Please try again.
+                  <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                  <p>{errorMessage}</p>
                 </motion.div>
               )}
             </form>
