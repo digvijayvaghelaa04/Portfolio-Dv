@@ -3,7 +3,7 @@ import { Resend } from 'resend';
 // Initialize Resend with the provided API Key from Vercel Environment Variables.
 // Will fail safely if the key is missing rather than crashing the whole site.
 const resend = new Resend(process.env.RESEND_API_KEY || "missing_key");
-const CONTACT_EMAIL = process.env.CONTACT_EMAIL || "digvijayvahelaa04@gmail.com";
+const CONTACT_EMAIL = process.env.CONTACT_EMAIL || "digvijayvaghelaa04@gmail.com";
 
 export default async function handler(req: any, res: any) {
   // 1. CORS & Methods Check
@@ -33,7 +33,7 @@ export default async function handler(req: any, res: any) {
       from: 'Portfolio Contact <onboarding@resend.dev>', // Default Resend testing domain (update when you have a custom domain)
       to: [CONTACT_EMAIL],
       subject: `New Portfolio Message: ${subject}`,
-      reply_to: email, // Extremely helpful: allows you to hit "Reply" directly to the recruiter
+      replyTo: email, // Extremely helpful: allows you to hit "Reply" directly to the recruiter
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
           <div style="background-color: #6366f1; padding: 24px; text-align: center;">
