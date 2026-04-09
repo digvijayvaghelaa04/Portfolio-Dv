@@ -358,10 +358,10 @@ Contributions, issues, and feature requests are welcome!
 
 ## 👨‍💻 Author
 
-**Alex Morgan**
-- GitHub: [@alexmorgan](https://github.com/alexmorgan)
-- LinkedIn: [Alex Morgan](https://linkedin.com/in/alexmorgan)
-- Email: alex.morgan@example.com
+**Digvijay Vaghela**
+- GitHub: [@digvijayvaghelaa04](https://github.com/digvijayvaghelaa04)
+- LinkedIn: [Digvijay Vaghela](https://www.linkedin.com/in/digvijay-vaghelaa/)
+- Email: digvijayvahelaa04@gmail.com
 
 ## 🙏 Acknowledgments
 
@@ -372,11 +372,11 @@ Contributions, issues, and feature requests are welcome!
 
 ## 📞 Support
 
-For support, email alex.morgan@example.com or open an issue in the repository.
+For support, email digvijayvahelaa04@gmail.com or open an issue in the repository.
 
 ---
 
-**Made with ❤️ and React** | © 2026 Alex Morgan
+**Made with ❤️ and React** | © 2026 Digvijay Vaghela
 
 ## 🎯 Final Checklist
 
