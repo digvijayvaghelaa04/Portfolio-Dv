@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
-import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowRight, Github, Linkedin, Mail, Download } from "lucide-react";
 import { portfolioData } from "../data/portfolio-data";
+import cvPdf from "../../imports/Digvijay_Vaghela_FullStack_Developer.pdf";
 
 export function Hero() {
   const scrollToSection = (sectionId: string) => {
@@ -109,6 +110,15 @@ export function Hero() {
           >
             Contact Me
           </button>
+
+          <a
+            href={cvPdf}
+            download="Digvijay_Vaghela_CV.pdf"
+            className="group relative flex items-center justify-center gap-2 px-8 py-4 bg-indigo-600 dark:bg-indigo-500 text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:bg-indigo-700 dark:hover:bg-indigo-600 hover:shadow-[0_0_40px_rgba(79,70,229,0.3)] w-full sm:w-auto"
+          >
+            <span>Download CV</span>
+            <Download className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
+          </a>
         </motion.div>
 
         {/* Social Links */}
