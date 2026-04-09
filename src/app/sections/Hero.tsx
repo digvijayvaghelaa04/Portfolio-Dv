@@ -138,6 +138,7 @@ export function Hero() {
               href={link}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={label}
               className="group p-4 bg-white dark:bg-white/5 backdrop-blur-md border border-gray-100 dark:border-white/10 rounded-full hover:border-gray-300 dark:hover:border-white/20 hover:bg-gray-50 dark:hover:bg-white/10 transition-all duration-300 shadow-sm dark:shadow-none"
               whileHover={{ scale: 1.1, y: -2 }}
               whileTap={{ scale: 0.95 }}

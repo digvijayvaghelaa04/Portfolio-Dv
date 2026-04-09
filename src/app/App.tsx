@@ -8,6 +8,8 @@ import { Skills } from "./sections/Skills";
 import { Projects } from "./sections/Projects";
 import { Experience } from "./sections/Experience";
 import { Contact } from "./sections/Contact";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 export default function App() {
   useEffect(() => {
@@ -45,6 +47,9 @@ export default function App() {
           <Contact />
         </main>
         <Footer />
+
+        <Analytics />
+        <SpeedInsights />
 
         {/* Custom Cursor Styles */}
         <style>{`
