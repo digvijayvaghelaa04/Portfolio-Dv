@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef, useState } from "react";
-import { Github, Sparkles } from "lucide-react";
+import { Github, Sparkles, ExternalLink } from "lucide-react";
 import { portfolioData } from "../data/portfolio-data";
 
 export function Projects() {
@@ -87,7 +87,7 @@ export function Projects() {
               layout
               className="group relative"
             >
-              <div className="relative bg-white dark:bg-[#111]/80 border border-indigo-100 dark:border-white/5 rounded-3xl overflow-hidden hover:border-indigo-300 dark:hover:border-white/20 transition-all duration-500 hover:shadow-2xl dark:hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] shadow-lg dark:shadow-none h-full flex flex-col backdrop-blur-sm z-10">
+              <div className="relative bg-white dark:bg-[#111]/80 border border-indigo-100 dark:border-white/5 rounded-3xl overflow-hidden hover:border-indigo-300 dark:hover:border-white/20 transition-all duration-500 hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_20px_40px_rgba(255,255,255,0.05)] shadow-lg dark:shadow-none h-full flex flex-col backdrop-blur-sm z-10 hover:-translate-y-2">
                 {/* Featured Badge */}
                 {project.featured && (
                   <div className="absolute top-4 right-4 z-20 px-3 py-1.5 bg-indigo-600/90 dark:bg-indigo-500/90 backdrop-blur-md text-white text-xs font-bold tracking-wider rounded-full flex items-center gap-1.5 shadow-lg">
@@ -140,15 +140,28 @@ export function Projects() {
 
                   {/* Links */}
                   <div className="flex items-center gap-4 mt-auto">
-                    <a
-                      href={project.githubLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gray-900 dark:bg-white text-white dark:text-black font-semibold rounded-xl hover:bg-gray-800 dark:hover:bg-gray-200 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
-                    >
-                      <Github className="w-5 h-5" />
-                      <span>Source Code</span>
-                    </a>
+                    {project.githubLink && (
+                      <a
+                        href={project.githubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gray-900 dark:bg-white text-white dark:text-black font-semibold rounded-xl hover:bg-gray-800 dark:hover:bg-gray-200 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+                      >
+                        <Github className="w-5 h-5" />
+                        <span className="text-sm md:text-base">Source Code</span>
+                      </a>
+                    )}
+                    {project.liveLink && (
+                      <a
+                        href={project.liveLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-indigo-600 dark:bg-indigo-500 text-white font-semibold rounded-xl hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+                      >
+                        <ExternalLink className="w-5 h-5" />
+                        <span className="text-sm md:text-base">Live Demo</span>
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>

@@ -56,7 +56,7 @@ export function Hero() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
           </span>
-          <span className="text-sm font-medium text-gray-800 dark:text-gray-300 tracking-wide">Available for new opportunities</span>
+          <span className="text-sm font-medium text-gray-800 dark:text-gray-300 tracking-wide">Available for Freelance & New Opportunities</span>
         </motion.div>
 
         {/* Main Heading */}
@@ -84,8 +84,11 @@ export function Hero() {
           <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-gray-600 dark:text-gray-400">
             {portfolioData.personal.role}
           </h2>
-          <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-4 leading-relaxed">
             {portfolioData.personal.tagline}. {portfolioData.personal.description}
+          </p>
+          <p className="text-base md:text-lg text-emerald-600 dark:text-emerald-400 max-w-3xl mx-auto mb-10 font-medium">
+            Available for freelance projects, business websites, portfolio websites, and custom web applications.
           </p>
         </motion.div>
 
@@ -108,7 +111,7 @@ export function Hero() {
             onClick={() => scrollToSection("contact")}
             className="px-8 py-4 bg-transparent text-gray-900 dark:text-white font-semibold rounded-full border border-gray-300 dark:border-white/20 hover:bg-gray-100 dark:hover:bg-white/5 transition-all duration-300 w-full sm:w-auto"
           >
-            Contact Me
+            Hire Me
           </button>
 
           <a

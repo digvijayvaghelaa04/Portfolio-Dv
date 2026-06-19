@@ -86,28 +86,11 @@ export function Skills() {
               transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
               className="group"
             >
-              <div className="p-6 bg-white dark:bg-[#111]/80 border border-indigo-100 dark:border-white/5  hover:border-indigo-300 dark:hover:border-white/20 transition-all duration-300 rounded-3xl hover:shadow-2xl dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] shadow-sm dark:shadow-none backdrop-blur-sm relative overflow-hidden z-10">
+              <div className="p-6 bg-white dark:bg-[#111]/80 border border-indigo-100 dark:border-white/5  hover:border-indigo-300 dark:hover:border-white/20 transition-all duration-300 rounded-3xl hover:shadow-2xl dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] shadow-sm dark:shadow-none backdrop-blur-sm relative overflow-hidden z-10 flex items-center justify-center gap-4">
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 dark:from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="relative">
-                  <div className="flex items-center justify-between mb-5">
-                    <div className="flex items-center gap-3">
-                      <span className="text-3xl drop-shadow-sm">{skill.icon}</span>
-                      <h4 className="text-lg font-bold text-gray-900 dark:text-white tracking-wide">{skill.name}</h4>
-                    </div>
-                    <span className="text-indigo-600 dark:text-indigo-400 font-bold text-lg">{skill.level}%</span>
-                  </div>
-
-                  {/* Premium Progress Bar */}
-                  <div className="relative h-2 bg-gray-100 dark:bg-white/10 rounded-full overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={isInView ? { width: `${skill.level}%` } : {}}
-                      transition={{ duration: 1, delay: 0.4 + index * 0.1, ease: "easeOut" }}
-                      className="absolute top-0 left-0 h-full bg-gradient-to-r from-indigo-500 to-purple-500 dark:from-indigo-400 dark:to-purple-500 rounded-full"
-                    >
-                      <div className="absolute inset-0 bg-white/30 animate-shimmer" />
-                    </motion.div>
-                  </div>
+                <div className="relative z-10 flex items-center justify-center gap-3">
+                  <span className="text-4xl drop-shadow-sm">{skill.icon}</span>
+                  <h4 className="text-xl font-bold text-gray-900 dark:text-white tracking-wide">{skill.name}</h4>
                 </div>
               </div>
             </motion.div>
