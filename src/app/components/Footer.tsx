@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Github, Linkedin, Mail, Heart, ArrowUp, Instagram } from "lucide-react";
+import { Github, Linkedin, Mail, Heart, ArrowUp, Instagram, MapPin } from "lucide-react";
 import { SnapchatIcon } from "../components/icons/SnapchatIcon";
 import { portfolioData } from "../data/portfolio-data";
 
@@ -126,6 +126,28 @@ export function Footer() {
                 </li>
                 <li className="flex items-center text-gray-500">{portfolioData.personal.location}</li>
               </ul>
+
+              {/* Location Map Card */}
+              <a
+                href="https://maps.app.goo.gl/UZaEWEJfKCtRnght6"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open location in Google Maps"
+                className="mt-6 block relative w-full md:w-[220px] h-[120px] rounded-2xl overflow-hidden border border-white/10 bg-[#1E293B]/40 group shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02]"
+              >
+                {/* Map Grid Pattern */}
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff1a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff1a_1px,transparent_1px)] bg-[size:1rem_1rem] opacity-30 group-hover:scale-110 transition-transform duration-700" />
+                
+                {/* Content Overlay */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-gradient-to-t from-[#0F172A] to-transparent">
+                  <div className="w-10 h-10 rounded-full bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center group-hover:bg-indigo-500/30 transition-colors">
+                    <MapPin className="w-5 h-5 text-indigo-400 drop-shadow-md" />
+                  </div>
+                  <span className="text-gray-200 text-xs font-semibold tracking-wide">
+                    Ahmedabad, Gujarat, India
+                  </span>
+                </div>
+              </a>
             </motion.div>
           </div>
         </div>
