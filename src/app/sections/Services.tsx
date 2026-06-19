@@ -67,10 +67,10 @@ export function Services() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group relative"
             >
-              <div className="p-8 glass-card rounded-3xl transition-all duration-500 hover:shadow-[0_20px_40px_rgba(108,76,241,0.15)] dark:hover:shadow-[0_0_40px_rgba(108,76,241,0.3)] shadow-lg h-full relative z-10 overflow-hidden hover:-translate-y-2 hover:border-[var(--primary)]/50">
-                <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/5 dark:from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="p-8 glass-card rounded-3xl transition-all duration-300 hover:shadow-xl shadow-sm h-full relative z-10 overflow-hidden hover:-translate-y-1 hover:border-[var(--border-light)]">
+                <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/5 dark:from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="relative">
-                  <div className="w-14 h-14 glass-card border-white/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-[var(--primary)]/10 dark:group-hover:bg-[var(--primary)]/20 group-hover:border-[var(--primary)]/30 transition-all duration-300 shadow-sm group-hover:scale-110 group-hover:rotate-3">
+                  <div className="w-14 h-14 glass-card border-[var(--border-light)] rounded-2xl flex items-center justify-center mb-6 group-hover:bg-[var(--primary)]/5 dark:group-hover:bg-[var(--primary)]/10 transition-all duration-300 shadow-sm group-hover:scale-105">
                     <service.icon className="w-7 h-7 text-[var(--primary)]" />
                   </div>
                   <h4 className="font-bold text-gray-900 dark:text-white mb-3 tracking-wide">{service.title}</h4>

@@ -144,18 +144,6 @@ export function Contact() {
     >
       {/* Background */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-100/50 dark:from-indigo-900/10 via-transparent to-transparent" />
-      <motion.div
-        className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-600/10 dark:bg-indigo-600/10 rounded-full blur-[150px]"
-        animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.1, 0.2, 0.1],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
 
       <div className="relative z-10 container-fluid">
         {/* Section Header */}
@@ -236,7 +224,7 @@ export function Contact() {
                     initial={{ opacity: 0, scale: 0 }}
                     animate={isInView ? { opacity: 1, scale: 1 } : {}}
                     transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
-                    className="w-12 h-12 bg-white dark:bg-[#111] border border-gray-200 dark:border-white/10 rounded-2xl flex items-center justify-center hover:bg-[var(--primary)] hover:border-[var(--primary)] dark:hover:bg-[var(--primary)] dark:hover:border-[var(--primary)] transition-all duration-300 group shadow-sm hover:shadow-[0_0_20px_var(--hero-primary-glow)] hover:-translate-y-1"
+                    className="w-12 h-12 bg-white dark:bg-[#111] border border-gray-200 dark:border-white/10 rounded-2xl flex items-center justify-center hover:bg-[var(--primary)] hover:border-[var(--primary)] transition-all duration-300 group shadow-sm hover:shadow-md hover:-translate-y-1"
                     whileTap={{ scale: 0.95 }}
                   >
                     <social.icon className="w-5 h-5 text-gray-700 dark:text-gray-400 group-hover:text-white dark:group-hover:text-black transition-colors" />
@@ -251,7 +239,7 @@ export function Contact() {
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="glass-card p-8 md:p-10 rounded-3xl shadow-xl dark:shadow-[0_0_40px_rgba(108,76,241,0.1)] hover:shadow-2xl transition-shadow duration-300"
+            className="glass-card p-8 md:p-10 rounded-3xl shadow-md hover:shadow-xl transition-shadow duration-300"
           >
             <form onSubmit={handleSubmit} className="space-y-6 relative">
               
@@ -366,7 +354,7 @@ export function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting || submitStatus === 'success'}
-                className="w-full px-8 py-4 bg-[var(--primary)] text-white rounded-xl font-bold hover:bg-[var(--accent-blue)] transition-all duration-300 hover:shadow-[0_0_30px_var(--hero-primary-glow)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 group mt-4 relative overflow-hidden"
+                className="w-full px-8 py-4 bg-[var(--text-main)] text-white rounded-xl font-bold hover:bg-[var(--primary)] transition-all duration-300 hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 group mt-4 relative overflow-hidden"
               >
                 {isSubmitting ? (
                   <>

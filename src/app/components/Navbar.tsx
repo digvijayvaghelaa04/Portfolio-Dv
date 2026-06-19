@@ -80,7 +80,7 @@ export function Navbar() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="w-10 h-10 rounded-full overflow-hidden shadow-sm group-hover:shadow-lg dark:group-hover:shadow-[0_0_20px_rgba(99,102,241,0.3)] transition-all duration-300 border border-gray-200 dark:border-white/10 shrink-0">
+              <div className="w-10 h-10 rounded-full overflow-hidden shadow-sm group-hover:shadow-md transition-all duration-300 border border-gray-200 dark:border-white/10 shrink-0">
                 <img src={profileImg} alt="Digvijay" className="w-full h-full object-cover" />
               </div>
               <span className="text-xl font-bold text-gray-900 dark:text-white">
@@ -142,7 +142,7 @@ export function Navbar() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: 0.6 }}
-                className="px-6 py-2.5 bg-[var(--primary)] text-white font-semibold rounded-full hover:bg-[var(--accent-blue)] transition-all duration-300 hover:shadow-[0_0_20px_rgba(108,76,241,0.4)] hover:-translate-y-0.5"
+                className="px-6 py-2.5 bg-[var(--text-main)] text-white font-medium rounded-full hover:bg-[var(--primary)] transition-all duration-300 hover:-translate-y-0.5 shadow-sm hover:shadow-md"
               >
                 Hire Me
               </motion.button>
@@ -211,7 +211,7 @@ export function Navbar() {
               
               <button
                 onClick={() => scrollToSection("#contact")}
-                className="w-full px-4 py-3 bg-[var(--primary)] text-white rounded-xl font-semibold hover:bg-[var(--accent-blue)] transition-colors hover:shadow-[0_0_15px_rgba(108,76,241,0.3)]"
+                className="w-full px-4 py-3 bg-[var(--text-main)] text-white rounded-xl font-medium hover:bg-[var(--primary)] transition-colors shadow-sm hover:shadow-md"
               >
                 Hire Me
               </button>

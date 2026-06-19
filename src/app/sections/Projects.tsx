@@ -26,19 +26,7 @@ export function Projects() {
     >
       {/* Background Elements */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20" />
-      <motion.div
-        className="absolute top-1/2 -left-32 w-[600px] h-[600px] bg-indigo-600/10 dark:bg-indigo-600/10 rounded-full blur-[150px]"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.1, 0.2, 0.1],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-      
+
       <div className="relative z-10 container-fluid">
         {/* Section Header */}
         <motion.div
@@ -67,8 +55,8 @@ export function Projects() {
               onClick={() => setFilter(category)}
               className={`px-6 py-2 rounded-full font-medium transition-all duration-300 capitalize flex items-center justify-center ${
                 filter === category
-                  ? "bg-[var(--primary)] text-white shadow-lg transform scale-105 shadow-[0_0_20px_rgba(108,76,241,0.4)]"
-                  : "glass-card text-gray-600 dark:text-gray-400 hover:text-[var(--primary)] hover:border-[var(--primary)]/50"
+                  ? "bg-[var(--text-main)] text-white shadow-md transform scale-105"
+                  : "glass-card text-gray-600 dark:text-gray-400 hover:text-[var(--primary)] hover:border-[var(--border-light)]"
               }`}
             >
               {category}
@@ -87,7 +75,7 @@ export function Projects() {
               layout
               className="group relative"
             >
-              <div className="relative glass-card rounded-3xl overflow-hidden hover:border-[var(--primary)]/50 transition-all duration-500 hover:shadow-[0_20px_40px_rgba(108,76,241,0.15)] dark:hover:shadow-[0_0_40px_rgba(108,76,241,0.2)] shadow-lg h-full flex flex-col z-10 hover:-translate-y-3">
+              <div className="relative glass-card rounded-3xl overflow-hidden hover:border-[var(--border-light)] transition-all duration-300 hover:shadow-xl shadow-sm h-full flex flex-col z-10 hover:-translate-y-1">
                 {/* Featured Badge */}
                 {project.featured && (
                   <div className="absolute top-4 right-4 z-20 px-3 py-1.5 bg-indigo-600/90 dark:bg-indigo-500/90 backdrop-blur-md text-white text-xs font-bold tracking-wider rounded-full flex items-center gap-1.5 shadow-lg">
@@ -156,7 +144,7 @@ export function Projects() {
                         href={project.liveLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-[var(--primary)] text-white font-semibold rounded-xl hover:bg-[var(--accent-blue)] transition-all duration-300 hover:shadow-[0_0_20px_rgba(108,76,241,0.5)] dark:hover:shadow-[0_0_20px_rgba(108,76,241,0.4)] hover:-translate-y-0.5"
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-[var(--primary)] text-white font-semibold rounded-xl hover:bg-[var(--accent-blue)] transition-all duration-300 hover:shadow-md hover:-translate-y-0.5"
                       >
                         <ExternalLink className="w-5 h-5" />
                         <span className="text-sm md:text-base">Live Demo</span>

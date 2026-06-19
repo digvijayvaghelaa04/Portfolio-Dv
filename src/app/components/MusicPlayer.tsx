@@ -98,7 +98,7 @@ export function MusicPlayer() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             transition={{ duration: 0.3, type: 'spring', bounce: 0.4 }}
-            className="glass-card p-5 rounded-3xl w-64 shadow-2xl dark:shadow-[0_0_40px_rgba(108,76,241,0.2)] border border-[var(--primary)]/20 pointer-events-auto"
+            className="glass-card p-5 rounded-3xl w-64 shadow-md border border-gray-200 dark:border-[var(--border-light)] pointer-events-auto"
           >
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
@@ -119,7 +119,7 @@ export function MusicPlayer() {
             <div className="flex items-center gap-4 mb-5">
               <button
                 onClick={togglePlay}
-                className="w-12 h-12 flex-shrink-0 rounded-full bg-gradient-to-tr from-[var(--primary)] to-[var(--accent-blue)] text-white flex items-center justify-center hover:shadow-[0_0_20px_rgba(108,76,241,0.5)] transition-all shadow-lg hover:scale-105 active:scale-95"
+                className="w-12 h-12 flex-shrink-0 rounded-full bg-[var(--text-main)] text-white flex items-center justify-center hover:bg-[var(--primary)] transition-all shadow-sm hover:shadow-md hover:scale-105 active:scale-95"
                 aria-label={isPlaying ? "Pause music" : "Play music"}
               >
                 {isPlaying ? <Pause className="w-5 h-5 fill-current" /> : <Play className="w-5 h-5 ml-1 fill-current" />}
@@ -129,7 +129,7 @@ export function MusicPlayer() {
                 <div className="h-1.5 bg-gray-200 dark:bg-white/10 rounded-full overflow-hidden w-full relative">
                    {isPlaying ? (
                      <motion.div 
-                       className="absolute top-0 left-0 bottom-0 bg-gradient-to-r from-[var(--primary)] to-[var(--accent-blue)] rounded-full w-full"
+                       className="absolute top-0 left-0 bottom-0 bg-[var(--primary)] rounded-full w-full"
                        animate={{ x: ['-100%', '100%'] }}
                        transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
                      />
@@ -168,17 +168,16 @@ export function MusicPlayer() {
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className={`w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 relative pointer-events-auto ${
+        className={`w-12 h-12 rounded-full flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 relative pointer-events-auto ${
           isOpen || isPlaying
-            ? 'bg-[var(--primary)] text-white shadow-[0_0_20px_rgba(108,76,241,0.5)] border-none' 
-            : 'glass-card text-gray-700 dark:text-gray-300 hover:text-[var(--primary)] hover:border-[var(--primary)]/50'
+            ? 'bg-[var(--text-main)] text-white border-none' 
+            : 'glass-card text-gray-700 dark:text-gray-300 hover:text-[var(--primary)] border border-gray-200 dark:border-white/10'
         }`}
         aria-label="Toggle music player"
       >
         <Music className="w-5 h-5" />
         {isPlaying && (
           <span className="absolute -top-1 -right-1 flex h-3 w-3">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500 border-2 border-white dark:border-[#050505]"></span>
           </span>
         )}

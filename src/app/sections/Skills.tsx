@@ -25,18 +25,7 @@ export function Skills() {
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-100/50 dark:from-indigo-900/10 via-transparent to-transparent" />
-      <motion.div
-        className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-violet-600/10 dark:bg-violet-600/10 rounded-full blur-[150px]"
-        animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.1, 0.2, 0.1],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
+
 
       <div className="relative z-10 container-fluid">
         {/* Section Header */}
@@ -66,7 +55,7 @@ export function Skills() {
               onClick={() => setActiveTab(tab.id)}
               className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 flex items-center justify-center ${
                 activeTab === tab.id
-                  ? "bg-[var(--primary)] text-white shadow-lg transform scale-105 shadow-[0_0_20px_rgba(108,76,241,0.4)]"
+                  ? "bg-[var(--text-main)] text-white shadow-md transform scale-105"
                   : "glass-card text-gray-600 dark:text-gray-400 hover:text-[var(--primary)] dark:hover:text-[var(--primary)] hover:border-[var(--primary)]/50"
               }`}
             >
@@ -86,7 +75,7 @@ export function Skills() {
               transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
               className="group"
             >
-              <div className="p-6 glass-card hover:border-[var(--primary)]/50 transition-all duration-500 rounded-3xl hover:shadow-2xl dark:hover:shadow-[0_0_30px_rgba(108,76,241,0.3)] shadow-lg relative overflow-hidden z-10 flex flex-col gap-4 hover:-translate-y-2 group">
+              <div className="p-6 glass-card hover:border-[var(--border-light)] transition-all duration-300 rounded-3xl hover:shadow-xl shadow-sm relative overflow-hidden z-10 flex flex-col gap-4 hover:-translate-y-1 group">
                 <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/5 dark:from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="relative z-10 flex items-center gap-4 w-full">
                   <span className="text-4xl drop-shadow-sm">{skill.icon}</span>
@@ -102,7 +91,6 @@ export function Skills() {
                         transition={{ duration: 1, delay: 0.5 + index * 0.1, ease: "easeOut" }}
                         className="h-full bg-gradient-to-r from-[var(--grad-1-start)] to-[var(--grad-1-end)] rounded-full relative overflow-hidden"
                       >
-                        <div className="absolute inset-0 animate-shimmer" />
                       </motion.div>
                     </div>
                   </div>

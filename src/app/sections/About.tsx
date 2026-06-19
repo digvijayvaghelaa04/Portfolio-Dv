@@ -16,18 +16,7 @@ export function About() {
     >
       {/* Background Elements */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20" />
-      <motion.div
-        className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-500/10 dark:bg-indigo-500/10 rounded-full blur-[150px]"
-        animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.1, 0.2, 0.1],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
+
 
       <div className="relative z-10 container-fluid">
         {/* Section Header */}
@@ -89,7 +78,7 @@ export function About() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="h-full flex flex-col justify-center"
           >
-             <div className="space-y-6 text-gray-600 dark:text-gray-300 leading-relaxed glass-card p-8 rounded-3xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+             <div className="space-y-6 text-gray-600 dark:text-gray-300 leading-relaxed glass-card p-8 rounded-3xl transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
               <p>{portfolioData.about.bio}</p>
               <div className="h-px w-full bg-gradient-to-r from-transparent via-gray-200 dark:via-white/10 to-transparent my-6"></div>
               <p className="text-indigo-600 dark:text-indigo-400 font-medium leading-relaxed">{portfolioData.about.mission}</p>
@@ -128,8 +117,8 @@ export function About() {
               transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
               className="group relative"
             >
-              <div className="p-8 glass-card rounded-3xl transition-all duration-300 hover:shadow-2xl dark:hover:shadow-[0_0_30px_rgba(108,76,241,0.2)] hover:-translate-y-2 hover:border-[var(--primary)]/50 h-full relative z-10 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 dark:from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="p-8 glass-card rounded-3xl transition-all duration-300 hover:shadow-xl hover:-translate-y-1 h-full relative z-10 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 dark:from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="relative">
                   <div className="w-14 h-14 bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-indigo-100 dark:group-hover:bg-indigo-500/20 transition-colors duration-300">
                     <item.icon className="w-7 h-7 text-indigo-600 dark:text-indigo-400" />

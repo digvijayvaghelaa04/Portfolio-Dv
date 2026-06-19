@@ -32,8 +32,6 @@ export function Footer() {
 
   return (
     <footer className="relative bg-[#0F172A] border-t border-white/10 overflow-hidden transition-colors duration-500">
-      {/* Background Glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[var(--primary)]/10 via-transparent to-transparent opacity-60" />
 
       <div className="relative z-10 container-fluid py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
@@ -62,7 +60,7 @@ export function Footer() {
                     aria-label={social.label}
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.95 }}
-                    className="w-12 h-12 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center hover:bg-[var(--primary)] hover:border-[var(--primary)] transition-all duration-300 group shadow-sm hover:shadow-[0_0_20px_rgba(108,76,241,0.6)] hover:-translate-y-1"
+                    className="w-12 h-12 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center hover:bg-[var(--primary)] hover:border-[var(--primary)] transition-all duration-300 group shadow-sm hover:shadow-md hover:-translate-y-1"
                   >
                     <social.icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
                   </motion.a>
@@ -162,7 +160,7 @@ export function Footer() {
         viewport={{ once: false }}
         whileHover={{ scale: 1.1, y: -2 }}
         whileTap={{ scale: 0.9 }}
-        className="fixed bottom-8 right-8 w-12 h-12 bg-[var(--primary)] text-white rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(108,76,241,0.5)] hover:bg-[var(--accent-blue)] transition-all duration-300 z-40 hover:shadow-[0_0_30px_rgba(108,76,241,0.8)]"
+        className="fixed bottom-8 right-8 w-12 h-12 bg-[var(--text-main)] text-white rounded-full flex items-center justify-center shadow-md hover:bg-[var(--primary)] transition-all duration-300 z-40 hover:shadow-lg"
       >
         <ArrowUp className="w-5 h-5" />
       </motion.button>
