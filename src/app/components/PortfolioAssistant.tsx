@@ -15,6 +15,7 @@ export function PortfolioAssistant() {
   ]);
   const [inputValue, setInputValue] = useState("");
   const [context, setContext] = useState<ConversationContext>({ lastTopic: null });
+  const [isTyping, setIsTyping] = useState(false);
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -34,7 +35,7 @@ export function PortfolioAssistant() {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, isTyping]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -59,21 +60,31 @@ export function PortfolioAssistant() {
 
     setMessages((prev) => [...prev, userMsg]);
     if (!textInput) setInputValue("");
+    setIsTyping(true);
 
-    // Simulate slight delay for AI feel
+    // Simulate typing delay for AI feel
     setTimeout(() => {
       const { response, links, newContext } = generateResponse(userMsg.text, context);
       setContext(newContext);
+
+      // Add fallback quick actions if the question was unclear
+      const finalLinks = response.includes("I'm not entirely sure") ? [
+        { label: "View Projects", url: "#projects" },
+        { label: "Download CV", url: "/src/imports/Digvijay_Vaghela_CV.pdf.pdf" },
+        { label: "Contact Digvijay", url: "#contact" },
+        { label: "Hire for Freelance", url: "mailto:digvijayvaghelaa04@gmail.com" }
+      ] : links;
 
       const aiMsg: Message = {
         id: (Date.now() + 1).toString(),
         sender: "ai",
         text: response,
-        links: links,
+        links: finalLinks,
         timestamp: new Date()
       };
       setMessages((prev) => [...prev, aiMsg]);
-    }, 400);
+      setIsTyping(false);
+    }, 1000);
   };
 
   const suggestedQuestions = [
@@ -98,7 +109,7 @@ export function PortfolioAssistant() {
             className="fixed z-50 left-4 md:left-8 bottom-[calc(24px+env(safe-area-inset-bottom))] bg-white dark:bg-[#1E293B] text-[#0F172A] dark:text-white px-5 py-3 rounded-full flex items-center justify-center shadow-lg border border-gray-200 dark:border-white/10 hover:shadow-xl transition-all duration-300 group"
           >
             <Bot className="w-5 h-5 mr-2 text-[#6C4CF1]" />
-            <span className="font-semibold tracking-wide">Digvijay AI</span>
+            <span className="font-semibold tracking-wide">Jarvis</span>
           </motion.button>
         )}
       </AnimatePresence>
@@ -120,7 +131,7 @@ export function PortfolioAssistant() {
                   <Bot className="w-4 h-4 text-[#6C4CF1]" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-[#0F172A] dark:text-white text-sm">Digvijay AI</h3>
+                  <h3 className="font-bold text-[#0F172A] dark:text-white text-sm">Jarvis</h3>
                   <p className="text-xs text-gray-500 dark:text-gray-400">Personal Assistant</p>
                 </div>
               </div>
@@ -174,12 +185,27 @@ export function PortfolioAssistant() {
                   </div>
                 </div>
               ))}
+              {isTyping && (
+                <div className="flex justify-start">
+                  <div className="flex gap-2 max-w-[85%]">
+                    <div className="w-6 h-6 rounded-full bg-[#6C4CF1]/10 flex-shrink-0 flex items-center justify-center mt-1">
+                      <Bot className="w-3 h-3 text-[#6C4CF1]" />
+                    </div>
+                    <div className="px-4 py-3.5 rounded-2xl bg-gray-100 dark:bg-[#1E293B] border border-gray-200 dark:border-white/5 rounded-tl-sm flex gap-1 items-center">
+                      <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" />
+                      <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce [animation-delay:0.2s]" />
+                      <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce [animation-delay:0.4s]" />
+                    </div>
+                  </div>
+                </div>
+              )}
               <div ref={messagesEndRef} />
             </div>
 
             {/* Suggested Questions (only show if no user messages yet) */}
             {messages.length === 1 && (
-              <div className="px-4 pb-2 bg-white dark:bg-[#0F172A]">
+              <div className="px-4 pb-2 bg-white dark:bg-[#0F172A] flex-shrink-0">
+                <p className="text-xs text-gray-400 mb-2 font-medium px-1">Quick Actions</p>
                 <div className="flex flex-wrap gap-2">
                   {suggestedQuestions.map((q) => (
                     <button
@@ -205,7 +231,7 @@ export function PortfolioAssistant() {
                   onKeyDown={(e) => e.key === "Enter" && handleSend()}
                   placeholder="Ask me anything..."
                   className="flex-1 bg-gray-50 dark:bg-[#1E293B] text-[#0F172A] dark:text-white border border-gray-200 dark:border-white/10 rounded-full px-4 py-2.5 text-sm focus:outline-none focus:border-[#6C4CF1] transition-colors pr-10"
-                  aria-label="Message Digvijay AI"
+                  aria-label="Message Jarvis"
                 />
                 <button
                   onClick={() => handleSend()}
