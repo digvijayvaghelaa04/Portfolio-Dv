@@ -33,7 +33,7 @@ export function Hero() {
     <section
       id="home"
       onMouseMove={handleMouseMove}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[var(--light-bg)] dark:bg-[var(--dark-bg)] transition-colors duration-500 perspective-[1000px]"
+      className="relative min-h-[100svh] flex flex-col justify-center overflow-hidden bg-[var(--light-bg)] dark:bg-[var(--dark-bg)] transition-colors duration-500 perspective-[1000px] pt-[80px] md:pt-[90px] lg:pt-[100px] pb-16 md:pb-20 lg:pb-24"
     >
       {/* Premium Minimal Grid Background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_70%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
@@ -44,14 +44,14 @@ export function Hero() {
       {/* Content */}
       <motion.div 
         style={{ rotateX, rotateY }}
-        className="relative z-10 container-fluid py-32 flex flex-col items-center justify-center text-center preserve-3d"
+        className="relative z-10 container-fluid flex flex-col items-center justify-center text-center preserve-3d"
       >
         {/* Availability Badge */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 backdrop-blur-md mb-10 shadow-sm"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 backdrop-blur-md mb-6 md:mb-8 shadow-sm"
         >
           <span className="relative flex h-2 w-2">
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -97,7 +97,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-          className="flex flex-wrap items-center justify-center gap-4 mb-16"
+          className="flex flex-wrap items-center justify-center gap-4 mb-10 md:mb-12"
         >
           <button
             onClick={() => scrollToSection("projects")}
