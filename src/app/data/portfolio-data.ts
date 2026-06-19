@@ -18,6 +18,8 @@ export const portfolioData = {
   social: {
     github: "https://github.com/digvijayvaghelaa04",
     linkedin: "https://www.linkedin.com/in/digvijay-vaghelaa/",
+    instagram: "https://www.instagram.com/_dig__1/",
+    snapchat: "https://snapchat.com/t/2tVkcP8K",
     twitter: "",
     dribbble: "",
     behance: "",
@@ -105,16 +107,16 @@ export const portfolioData = {
   experience: [
     {
       id: 1,
-      position: "Full Stack Developer Intern",
+      position: "Internship",
       company: "HN Techno",
       location: "Ahmedabad, Gujarat",
       period: "2025 - 2026",
       type: "work",
-      description: "6 Months Internship (with ongoing contribution)",
+      description: "",
       achievements: [
-        "Implemented REST APIs and designed responsive modern UI components.",
-        "Contributed to strong database architecture utilizing MySQL and MongoDB.",
-        "Delivered and deployed multiple end-to-end full stack client projects.",
+        "Built responsive web interfaces using React.js and modern JavaScript.",
+        "Worked on REST APIs, frontend-backend integration, and database operations.",
+        "Contributed to real-world full stack projects and learned industry development practices.",
       ],
     },
     {

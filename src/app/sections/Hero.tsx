@@ -1,5 +1,6 @@
-import { motion } from "motion/react";
-import { ArrowRight, Github, Linkedin, Mail, Download } from "lucide-react";
+import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
+import { ArrowRight, Github, Linkedin, Mail, Download, Instagram } from "lucide-react";
+import { SnapchatIcon } from "../components/icons/SnapchatIcon";
 import { portfolioData } from "../data/portfolio-data";
 import cvPdf from "../../imports/Digvijay_Vaghela_CV.pdf.pdf";
 
@@ -9,20 +10,41 @@ export function Hero() {
     element?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 50, stiffness: 400 };
+  const smoothX = useSpring(mouseX, springConfig);
+  const smoothY = useSpring(mouseY, springConfig);
+
+  const rotateX = useTransform(smoothY, [-0.5, 0.5], [10, -10]);
+  const rotateY = useTransform(smoothX, [-0.5, 0.5], [-10, 10]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const { clientX, clientY } = e;
+    const { innerWidth, innerHeight } = window;
+    const x = clientX / innerWidth - 0.5;
+    const y = clientY / innerHeight - 0.5;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-50 dark:bg-[#050505] transition-colors duration-500"
+      onMouseMove={handleMouseMove}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[var(--light-bg)] dark:bg-[var(--dark-bg)] transition-colors duration-500 perspective-[1000px]"
     >
       {/* Premium Minimal Grid Background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_70%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
 
       {/* Subtle Glowing Orbs for that modern 1% feel */}
       <motion.div
-        className="absolute top-1/4 -left-32 w-96 h-96 bg-indigo-500/10 dark:bg-indigo-500/10 rounded-full blur-[150px]"
+        className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-[var(--hero-primary-glow)] dark:bg-[var(--hero-red-glow)] rounded-full blur-[150px]"
         animate={{
           scale: [1, 1.2, 1],
           opacity: [0.3, 0.5, 0.3],
+          x: [0, 50, 0],
         }}
         transition={{
           duration: 8,
@@ -31,10 +53,11 @@ export function Hero() {
         }}
       />
       <motion.div
-        className="absolute bottom-1/4 -right-32 w-96 h-96 bg-violet-600/10 dark:bg-violet-600/10 rounded-full blur-[150px]"
+        className="absolute bottom-1/4 -right-32 w-[500px] h-[500px] bg-[var(--accent-blue)]/20 dark:bg-[var(--accent-red)]/20 rounded-full blur-[150px]"
         animate={{
           scale: [1.2, 1, 1.2],
           opacity: [0.3, 0.5, 0.3],
+          y: [0, -50, 0],
         }}
         transition={{
           duration: 10,
@@ -44,7 +67,10 @@ export function Hero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-32 flex flex-col items-center justify-center text-center">
+      <motion.div 
+        style={{ rotateX, rotateY }}
+        className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-32 flex flex-col items-center justify-center text-center preserve-3d"
+      >
         {/* Availability Badge */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -69,7 +95,7 @@ export function Hero() {
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 tracking-tight leading-[1.1]">
             <span className="text-gray-900 dark:text-white">Hi, I'm </span>
             <br className="md:hidden" />
-            <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent animate-gradient">
+            <span className="bg-gradient-to-r from-[var(--grad-1-start)] to-[var(--grad-1-end)] bg-clip-text text-transparent animate-gradient">
               {portfolioData.personal.name}
             </span>
           </h1>
@@ -134,26 +160,35 @@ export function Hero() {
           {[
             { icon: Github, link: portfolioData.social.github, label: "GitHub" },
             { icon: Linkedin, link: portfolioData.social.linkedin, label: "LinkedIn" },
+            { icon: Instagram, link: portfolioData.social.instagram, label: "Instagram" },
+            { icon: SnapchatIcon, link: portfolioData.social.snapchat, label: "Snapchat" },
             { icon: Mail, link: `mailto:${portfolioData.personal.email}`, label: "Email" },
           ].map(({ icon: Icon, link, label }, index) => (
-            <motion.a
-              key={label}
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-              className="group p-4 bg-white dark:bg-white/5 backdrop-blur-md border border-gray-100 dark:border-white/10 rounded-full hover:border-gray-300 dark:hover:border-white/20 hover:bg-gray-50 dark:hover:bg-white/10 transition-all duration-300 shadow-sm dark:shadow-none"
+            <div key={label} className="relative group">
+              <motion.a
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="flex p-4 bg-white/50 dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 rounded-full hover:border-[var(--primary)] dark:hover:border-[var(--primary)] hover:bg-gray-50 dark:hover:bg-white/10 transition-all duration-300 shadow-sm dark:shadow-none relative overflow-hidden"
               whileHover={{ scale: 1.1, y: -2 }}
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.6 + index * 0.1 }}
             >
-              <Icon className="w-5 h-5 text-gray-600 dark:text-gray-300 group-hover:text-black dark:group-hover:text-white transition-colors" />
-            </motion.a>
+              <Icon className="w-5 h-5 text-gray-600 dark:text-gray-300 group-hover:text-[var(--primary)] dark:group-hover:text-[var(--primary)] transition-colors relative z-10" />
+              </motion.a>
+              
+              {/* Tooltip */}
+              <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 px-3 py-1 bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-sm font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
+                {label}
+                <div className="absolute -top-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-b-gray-900 dark:border-b-white" />
+              </div>
+            </div>
           ))}
         </motion.div>
-      </div>
+      </motion.div>
 
       <style>{`
         @keyframes gradient {

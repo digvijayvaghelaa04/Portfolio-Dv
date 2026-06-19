@@ -1,7 +1,8 @@
 import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef, useState } from "react";
-import { Mail, MapPin, Phone, Send, Github, Linkedin, CheckCircle, AlertCircle } from "lucide-react";
+import { Mail, MapPin, Phone, Send, Github, Linkedin, CheckCircle, AlertCircle, Instagram } from "lucide-react";
+import { SnapchatIcon } from "../components/icons/SnapchatIcon";
 import { portfolioData } from "../data/portfolio-data";
 
 export function Contact() {
@@ -130,6 +131,8 @@ export function Contact() {
   const socialLinks = [
     { icon: Github, href: portfolioData.social.github, label: "GitHub" },
     { icon: Linkedin, href: portfolioData.social.linkedin, label: "LinkedIn" },
+    { icon: Instagram, href: portfolioData.social.instagram, label: "Instagram" },
+    { icon: SnapchatIcon, href: portfolioData.social.snapchat, label: "Snapchat" },
     { icon: Mail, href: `mailto:${portfolioData.personal.email || "digvijay@example.com"}`, label: "Mail" },
   ];
 
@@ -197,15 +200,15 @@ export function Contact() {
                   transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
                   className="flex items-center gap-6 group"
                 >
-                  <div className="w-14 h-14 bg-indigo-50 dark:bg-[#111]/80 border border-indigo-100 dark:border-white/10 rounded-2xl flex items-center justify-center group-hover:bg-indigo-100 dark:group-hover:bg-indigo-500/20 group-hover:border-indigo-300 dark:group-hover:border-indigo-500/50 transition-all duration-300 shadow-sm">
-                    <info.icon className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
+                  <div className="w-14 h-14 bg-gray-50 dark:bg-[#111]/80 border border-gray-200 dark:border-white/10 rounded-2xl flex items-center justify-center group-hover:bg-[var(--primary)]/10 dark:group-hover:bg-[var(--primary)]/20 group-hover:border-[var(--primary)]/30 dark:group-hover:border-[var(--primary)]/50 transition-all duration-300 shadow-sm">
+                    <info.icon className="w-6 h-6 text-[var(--primary)]" />
                   </div>
                   <div>
                     <p className="text-gray-500 dark:text-gray-400 text-sm mb-1 font-medium">{info.label}</p>
                     {info.href ? (
                        <a
                          href={info.href}
-                         className="text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-semibold text-lg"
+                         className="text-gray-900 dark:text-white hover:text-[var(--primary)] transition-colors font-semibold text-lg break-all"
                        >
                          {info.value}
                        </a>
@@ -233,7 +236,7 @@ export function Contact() {
                     initial={{ opacity: 0, scale: 0 }}
                     animate={isInView ? { opacity: 1, scale: 1 } : {}}
                     transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
-                    className="w-12 h-12 bg-white dark:bg-[#111] border border-gray-200 dark:border-white/10 rounded-2xl flex items-center justify-center hover:bg-gray-900 dark:hover:bg-white hover:border-gray-900 dark:hover:border-white transition-all duration-300 group shadow-sm hover:shadow-lg hover:-translate-y-1"
+                    className="w-12 h-12 bg-white dark:bg-[#111] border border-gray-200 dark:border-white/10 rounded-2xl flex items-center justify-center hover:bg-[var(--primary)] hover:border-[var(--primary)] dark:hover:bg-[var(--primary)] dark:hover:border-[var(--primary)] transition-all duration-300 group shadow-sm hover:shadow-[0_0_20px_var(--hero-primary-glow)] hover:-translate-y-1"
                     whileTap={{ scale: 0.95 }}
                   >
                     <social.icon className="w-5 h-5 text-gray-700 dark:text-gray-400 group-hover:text-white dark:group-hover:text-black transition-colors" />
@@ -363,7 +366,7 @@ export function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting || submitStatus === 'success'}
-                className="w-full px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-black rounded-xl font-bold hover:bg-gray-800 dark:hover:bg-gray-200 transition-all duration-300 hover:shadow-xl dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 group mt-4 relative overflow-hidden"
+                className="w-full px-8 py-4 bg-[var(--primary)] text-white rounded-xl font-bold hover:bg-[var(--accent-blue)] transition-all duration-300 hover:shadow-[0_0_30px_var(--hero-primary-glow)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 group mt-4 relative overflow-hidden"
               >
                 {isSubmitting ? (
                   <>

@@ -38,7 +38,7 @@ export function Experience() {
         {/* Timeline */}
         <div className="relative">
           {/* Center Line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-indigo-500/50 via-purple-500/30 to-transparent hidden lg:block" />
+          <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[var(--grad-1-start)]/50 via-[var(--grad-1-end)]/30 to-transparent hidden lg:block" />
 
           {/* Timeline Items */}
           <div className="space-y-16">
@@ -69,7 +69,7 @@ export function Experience() {
                         animate={isInView ? { scale: 1 } : {}}
                         transition={{ duration: 0.4, delay: index * 0.2 + 0.2 }}
                         className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br ${
-                          isWork ? "from-indigo-500 to-indigo-600 dark:from-indigo-500 dark:to-indigo-600" : "from-purple-500 to-purple-600 dark:from-purple-500 dark:to-purple-600"
+                          isWork ? "from-[var(--grad-1-start)] to-[var(--grad-1-end)]" : "from-[var(--grad-2-start)] to-[var(--grad-2-end)]"
                         } rounded-2xl mb-4 shadow-lg`}
                       >
                         {isWork ? (
@@ -108,14 +108,14 @@ export function Experience() {
                       transition={{ duration: 0.4, delay: index * 0.2 + 0.1 }}
                       className="relative"
                     >
-                      <div className="w-6 h-6 bg-indigo-500 rounded-full border-4 border-gray-50 dark:border-[#050505]" />
-                      <div className="absolute inset-0 bg-indigo-500 rounded-full animate-ping opacity-75" />
+                      <div className="w-6 h-6 bg-[var(--primary)] rounded-full border-4 border-gray-50 dark:border-[#050505]" />
+                      <div className="absolute inset-0 bg-[var(--primary)] rounded-full animate-ping opacity-75" />
                     </motion.div>
                   </div>
 
                   {/* Right Side - Content Card */}
                   <div className={isLeft ? "lg:order-2" : ""}>
-                    <div className="p-8 bg-white dark:bg-[#111]/80 border border-indigo-100 dark:border-white/5 rounded-3xl hover:border-indigo-300 dark:hover:border-white/20 transition-all duration-300 hover:shadow-2xl dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] shadow-lg dark:shadow-none backdrop-blur-sm group relative overflow-hidden z-10">
+                    <div className="p-8 bg-white dark:bg-[#111]/80 border border-gray-200 dark:border-white/5 rounded-3xl hover:border-[var(--primary)] dark:hover:border-[var(--primary)] transition-all duration-500 hover:shadow-2xl dark:hover:shadow-[0_0_30px_var(--border-glow)] shadow-lg dark:shadow-none backdrop-blur-sm group relative overflow-hidden z-10 hover:-translate-y-2">
                       <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 dark:from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       <div className="relative">
                         <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed font-medium">
@@ -135,7 +135,7 @@ export function Experience() {
                               }}
                               className="flex items-start gap-4 p-3 bg-gray-50/50 dark:bg-black/30 rounded-xl"
                             >
-                              <div className="w-2 h-2 bg-indigo-500 dark:bg-indigo-400 rounded-full mt-2 flex-shrink-0" />
+                              <div className="w-2 h-2 bg-[var(--primary)] rounded-full mt-2 flex-shrink-0" />
                               <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
                                 {achievement}
                               </p>

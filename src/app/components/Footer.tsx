@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
-import { Github, Linkedin, Mail, Heart, ArrowUp } from "lucide-react";
+import { Github, Linkedin, Mail, Heart, ArrowUp, Instagram } from "lucide-react";
+import { SnapchatIcon } from "../components/icons/SnapchatIcon";
 import { portfolioData } from "../data/portfolio-data";
 
 export function Footer() {
@@ -24,6 +25,8 @@ export function Footer() {
   const socialLinks = [
     { icon: Github, href: portfolioData.social.github, label: "GitHub" },
     { icon: Linkedin, href: portfolioData.social.linkedin, label: "LinkedIn" },
+    { icon: Instagram, href: portfolioData.social.instagram, label: "Instagram" },
+    { icon: SnapchatIcon, href: portfolioData.social.snapchat, label: "Snapchat" },
     { icon: Mail, href: `mailto:${portfolioData.personal.email}`, label: "Email" },
   ];
 
@@ -59,9 +62,9 @@ export function Footer() {
                     aria-label={social.label}
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.95 }}
-                    className="w-12 h-12 bg-white dark:bg-[#111] border border-gray-200 dark:border-white/10 rounded-xl flex items-center justify-center hover:bg-gray-900 dark:hover:bg-white hover:border-gray-900 dark:hover:border-white transition-all duration-300 group shadow-sm hover:shadow-lg"
+                    className="w-12 h-12 bg-white dark:bg-[#111] border border-gray-200 dark:border-white/10 rounded-xl flex items-center justify-center hover:bg-[var(--primary)] hover:border-[var(--primary)] dark:hover:bg-[var(--primary)] dark:hover:border-[var(--primary)] transition-all duration-300 group shadow-sm hover:shadow-[0_0_20px_var(--hero-primary-glow)] hover:-translate-y-1"
                   >
-                    <social.icon className="w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-white dark:group-hover:text-black transition-colors" />
+                    <social.icon className="w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-white transition-colors" />
                   </motion.a>
                 ))}
               </div>
@@ -86,9 +89,9 @@ export function Footer() {
                         e.preventDefault();
                         scrollToSection(link.href);
                       }}
-                      className="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-medium inline-flex items-center gap-2 group"
+                      className="text-gray-600 dark:text-gray-400 hover:text-[var(--primary)] dark:hover:text-[var(--primary)] transition-colors font-medium inline-flex items-center gap-2 group"
                     >
-                      <span className="w-0 h-[2px] bg-indigo-500 rounded-full group-hover:w-4 transition-all duration-300" />
+                      <span className="w-0 h-[2px] bg-[var(--primary)] rounded-full group-hover:w-4 transition-all duration-300" />
                       {link.name}
                     </a>
                   </li>
@@ -110,7 +113,7 @@ export function Footer() {
                 <li>
                   <a
                     href={`mailto:${portfolioData.personal.email}`}
-                    className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                    className="hover:text-[var(--primary)] dark:hover:text-[var(--primary)] transition-colors"
                   >
                     {portfolioData.personal.email}
                   </a>
@@ -118,7 +121,7 @@ export function Footer() {
                 <li>
                   <a
                     href={`tel:${portfolioData.personal.phone}`}
-                    className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center"
+                    className="hover:text-[var(--primary)] dark:hover:text-[var(--primary)] transition-colors flex items-center"
                   >
                     {portfolioData.personal.phone}
                   </a>
@@ -159,7 +162,7 @@ export function Footer() {
         viewport={{ once: false }}
         whileHover={{ scale: 1.1, y: -2 }}
         whileTap={{ scale: 0.9 }}
-        className="fixed bottom-8 right-8 w-12 h-12 bg-gray-900 dark:bg-white text-white dark:text-black rounded-full flex items-center justify-center shadow-lg dark:shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:bg-gray-800 dark:hover:bg-gray-200 transition-all duration-300 z-40"
+        className="fixed bottom-8 right-8 w-12 h-12 bg-[var(--primary)] text-white rounded-full flex items-center justify-center shadow-lg dark:shadow-[0_0_30px_var(--border-glow)] hover:bg-[var(--accent-blue)] transition-all duration-300 z-40 hover:shadow-[0_0_20px_var(--hero-primary-glow)]"
       >
         <ArrowUp className="w-5 h-5" />
       </motion.button>

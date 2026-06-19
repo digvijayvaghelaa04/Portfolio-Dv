@@ -86,11 +86,26 @@ export function Skills() {
               transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
               className="group"
             >
-              <div className="p-6 bg-white dark:bg-[#111]/80 border border-indigo-100 dark:border-white/5  hover:border-indigo-300 dark:hover:border-white/20 transition-all duration-300 rounded-3xl hover:shadow-2xl dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] shadow-sm dark:shadow-none backdrop-blur-sm relative overflow-hidden z-10 flex items-center justify-center gap-4">
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 dark:from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="relative z-10 flex items-center justify-center gap-3">
+              <div className="p-6 bg-white dark:bg-[var(--card-dark)]/80 border border-gray-200 dark:border-white/5 hover:border-[var(--primary)] dark:hover:border-[var(--primary)] transition-all duration-500 rounded-3xl hover:shadow-2xl dark:hover:shadow-[0_0_30px_var(--border-glow)] shadow-lg dark:shadow-none backdrop-blur-md relative overflow-hidden z-10 flex flex-col gap-4 hover:-translate-y-2">
+                <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/5 dark:from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="relative z-10 flex items-center gap-4 w-full">
                   <span className="text-4xl drop-shadow-sm">{skill.icon}</span>
-                  <h4 className="text-xl font-bold text-gray-900 dark:text-white tracking-wide">{skill.name}</h4>
+                  <div className="flex-1 flex flex-col gap-2">
+                    <div className="flex items-center justify-between">
+                      <h4 className="text-xl font-bold text-gray-900 dark:text-white tracking-wide">{skill.name}</h4>
+                      <span className="text-sm font-semibold text-[var(--primary)]">{skill.level}%</span>
+                    </div>
+                    <div className="w-full h-2.5 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
+                      <motion.div 
+                        initial={{ width: 0 }}
+                        animate={isInView ? { width: `${skill.level}%` } : {}}
+                        transition={{ duration: 1, delay: 0.5 + index * 0.1, ease: "easeOut" }}
+                        className="h-full bg-gradient-to-r from-[var(--grad-1-start)] to-[var(--grad-1-end)] rounded-full relative overflow-hidden"
+                      >
+                        <div className="absolute inset-0 animate-shimmer" />
+                      </motion.div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </motion.div>

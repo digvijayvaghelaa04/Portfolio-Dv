@@ -87,7 +87,7 @@ export function Projects() {
               layout
               className="group relative"
             >
-              <div className="relative bg-white dark:bg-[#111]/80 border border-indigo-100 dark:border-white/5 rounded-3xl overflow-hidden hover:border-indigo-300 dark:hover:border-white/20 transition-all duration-500 hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_20px_40px_rgba(255,255,255,0.05)] shadow-lg dark:shadow-none h-full flex flex-col backdrop-blur-sm z-10 hover:-translate-y-2">
+              <div className="relative bg-white dark:bg-[#111]/80 border border-gray-200 dark:border-white/5 rounded-3xl overflow-hidden hover:border-[var(--primary)] dark:hover:border-[var(--primary)] transition-all duration-500 hover:shadow-[0_20px_40px_rgba(108,76,241,0.15)] dark:hover:shadow-[0_0_40px_rgba(108,76,241,0.2)] shadow-lg dark:shadow-none h-full flex flex-col backdrop-blur-sm z-10 hover:-translate-y-3">
                 {/* Featured Badge */}
                 {project.featured && (
                   <div className="absolute top-4 right-4 z-20 px-3 py-1.5 bg-indigo-600/90 dark:bg-indigo-500/90 backdrop-blur-md text-white text-xs font-bold tracking-wider rounded-full flex items-center gap-1.5 shadow-lg">
@@ -156,7 +156,7 @@ export function Projects() {
                         href={project.liveLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-indigo-600 dark:bg-indigo-500 text-white font-semibold rounded-xl hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-[var(--primary)] text-white font-semibold rounded-xl hover:bg-[var(--accent-blue)] transition-all duration-300 hover:shadow-[0_0_20px_rgba(108,76,241,0.5)] dark:hover:shadow-[0_0_20px_rgba(108,76,241,0.4)] hover:-translate-y-0.5"
                       >
                         <ExternalLink className="w-5 h-5" />
                         <span className="text-sm md:text-base">Live Demo</span>
