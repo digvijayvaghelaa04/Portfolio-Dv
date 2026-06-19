@@ -11,7 +11,7 @@ import { Experience } from "./sections/Experience";
 import { Contact } from "./sections/Contact";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
-import { MusicPlayer } from "./components/MusicPlayer";
+import { PortfolioAssistant } from "./components/PortfolioAssistant";
 import { CustomCursor } from "./components/CustomCursor";
 
 export default function App() {
@@ -34,7 +34,7 @@ export default function App() {
           <Contact />
         </main>
         <Footer />
-        <MusicPlayer />
+        <PortfolioAssistant />
         <CustomCursor />
 
         <Analytics />
