@@ -116,11 +116,11 @@ export const portfolioData = {
       location: "Ahmedabad, Gujarat",
       period: "2025 - 2026",
       type: "work",
-      description: "",
+      description: "Completed Internship focused on full stack web development and practical industry experience.",
       achievements: [
-        "Built responsive web interfaces using React.js and modern JavaScript.",
-        "Worked on REST APIs, frontend-backend integration, and database operations.",
-        "Contributed to real-world full stack projects and learned industry development practices.",
+        "Developed responsive React.js interfaces and reusable components.",
+        "Integrated REST APIs and worked with databases.",
+        "Contributed to real-world projects and gained practical development experience.",
       ],
     },
     {
