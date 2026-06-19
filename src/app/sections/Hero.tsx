@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { ArrowRight, Github, Linkedin, Mail, Download } from "lucide-react";
 import { portfolioData } from "../data/portfolio-data";
-import cvPdf from "../../imports/Digvijay_Vaghela_FullStack_Developer.pdf";
+import cvPdf from "../../imports/Digvijay_Vaghela_CV.pdf.pdf";
 
 export function Hero() {
   const scrollToSection = (sectionId: string) => {
