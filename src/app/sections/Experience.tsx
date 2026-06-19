@@ -20,7 +20,7 @@ export function Experience() {
       {/* Background Elements */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="relative z-10 container-fluid">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -29,7 +29,7 @@ export function Experience() {
           className="text-center mb-20"
         >
           <h2 className="text-sm uppercase tracking-widest text-indigo-500 dark:text-indigo-400 mb-4 font-semibold">Journey</h2>
-          <h3 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          <h3 className="font-bold text-gray-900 dark:text-white mb-6">
             Experience & <span className="text-indigo-600 dark:text-indigo-400">Education</span>
           </h3>
           <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 dark:from-indigo-400 dark:to-purple-500 mx-auto rounded-full" />
@@ -80,7 +80,7 @@ export function Experience() {
                       </motion.div>
 
                       <div className={`${isLeft ? "lg:pr-12" : "lg:pl-12"}`}>
-                        <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 tracking-wide">
+                        <h4 className="font-bold text-gray-900 dark:text-white mb-2 tracking-wide">
                           {item.position}
                         </h4>
                         <h5 className="text-lg text-indigo-600 dark:text-indigo-400 font-bold mb-3">

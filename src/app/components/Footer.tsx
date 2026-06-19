@@ -35,7 +35,7 @@ export function Footer() {
       {/* Background Glow */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-100/50 via-transparent to-transparent dark:from-indigo-900/10 dark:via-black dark:to-black opacity-60" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-16">
+      <div className="relative z-10 container-fluid py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="lg:col-span-2">
@@ -45,14 +45,14 @@ export function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+              <h3 className="font-bold text-gray-900 dark:text-white mb-4">
                 {portfolioData.personal.name}
               </h3>
               <p className="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed max-w-md font-medium">
                 {portfolioData.personal.tagline}. Building exceptional digital experiences
                 with modern web technologies.
               </p>
-              <div className="flex gap-4">
+              <div className="flex flex-wrap gap-4">
                 {socialLinks.map((social) => (
                   <motion.a
                     key={social.label}

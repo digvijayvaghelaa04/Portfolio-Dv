@@ -157,7 +157,7 @@ export function Contact() {
         }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="relative z-10 container-fluid">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -168,13 +168,13 @@ export function Contact() {
           <h2 className="text-sm uppercase tracking-widest text-indigo-500 dark:text-indigo-400 mb-4 font-semibold">
             Get In Touch
           </h2>
-          <h3 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          <h3 className="font-bold text-gray-900 dark:text-white mb-6">
             Let's Work <span className="text-indigo-600 dark:text-indigo-400">Together</span>
           </h3>
           <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 dark:from-indigo-400 dark:to-purple-500 mx-auto rounded-full" />
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,350px),1fr))] gap-12">
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -182,7 +182,7 @@ export function Contact() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex flex-col justify-center"
           >
-            <h4 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 tracking-wide">
+            <h4 className="font-bold text-gray-900 dark:text-white mb-6 tracking-wide">
               Contact Information
             </h4>
             <p className="text-gray-600 dark:text-gray-400 mb-10 leading-relaxed text-lg">
@@ -225,7 +225,7 @@ export function Contact() {
               <h5 className="text-lg font-bold text-gray-900 dark:text-white mb-6">
                 Follow Me
               </h5>
-              <div className="flex gap-4">
+              <div className="flex flex-wrap gap-4">
                 {socialLinks.map((social, index) => (
                   <motion.a
                     key={social.label}

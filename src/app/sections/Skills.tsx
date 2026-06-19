@@ -38,7 +38,7 @@ export function Skills() {
         }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="relative z-10 container-fluid">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -47,7 +47,7 @@ export function Skills() {
           className="text-center mb-16"
         >
           <h2 className="text-sm uppercase tracking-widest text-indigo-500 dark:text-indigo-400 mb-4 font-semibold">Skills & Expertise</h2>
-          <h3 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          <h3 className="font-bold text-gray-900 dark:text-white mb-6">
             My <span className="text-indigo-600 dark:text-indigo-400">Technical Arsenal</span>
           </h3>
           <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 dark:from-indigo-400 dark:to-purple-500 mx-auto rounded-full" />
@@ -77,7 +77,7 @@ export function Skills() {
         </motion.div>
 
         {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-6 max-w-5xl mx-auto">
           {skills.map((skill, index) => (
             <motion.div
               key={skill.name}
@@ -92,7 +92,7 @@ export function Skills() {
                   <span className="text-4xl drop-shadow-sm">{skill.icon}</span>
                   <div className="flex-1 flex flex-col gap-2">
                     <div className="flex items-center justify-between">
-                      <h4 className="text-xl font-bold text-gray-900 dark:text-white tracking-wide">{skill.name}</h4>
+                      <h4 className="font-bold text-gray-900 dark:text-white tracking-wide">{skill.name}</h4>
                       <span className="text-sm font-semibold text-[var(--primary)]">{skill.level}%</span>
                     </div>
                     <div className="w-full h-2.5 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">

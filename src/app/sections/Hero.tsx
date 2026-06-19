@@ -69,7 +69,7 @@ export function Hero() {
       {/* Content */}
       <motion.div 
         style={{ rotateX, rotateY }}
-        className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-32 flex flex-col items-center justify-center text-center preserve-3d"
+        className="relative z-10 container-fluid py-32 flex flex-col items-center justify-center text-center preserve-3d"
       >
         {/* Availability Badge */}
         <motion.div
@@ -92,7 +92,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
           className="max-w-4xl"
         >
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 tracking-tight leading-[1.1]">
+          <h1 className="font-extrabold mb-6 tracking-tight">
             <span className="text-gray-900 dark:text-white">Hi, I'm </span>
             <br className="md:hidden" />
             <span className="bg-gradient-to-r from-[var(--grad-1-start)] to-[var(--grad-1-end)] bg-clip-text text-transparent animate-gradient">
@@ -107,13 +107,13 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
         >
-          <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-gray-600 dark:text-gray-400">
+          <h2 className="font-semibold mb-6 text-gray-600 dark:text-gray-400">
             {portfolioData.personal.role}
           </h2>
-          <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-4 leading-relaxed">
+          <p className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-4">
             {portfolioData.personal.tagline}. {portfolioData.personal.description}
           </p>
-          <p className="text-base md:text-lg text-emerald-600 dark:text-emerald-400 max-w-3xl mx-auto mb-10 font-medium">
+          <p className="text-emerald-600 dark:text-emerald-400 max-w-3xl mx-auto mb-10 font-medium">
             Available for freelance projects, business websites, portfolio websites, and custom web applications.
           </p>
         </motion.div>
@@ -123,7 +123,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-16"
+          className="flex flex-wrap items-center justify-center gap-5 mb-16"
         >
           <button
             onClick={() => scrollToSection("projects")}

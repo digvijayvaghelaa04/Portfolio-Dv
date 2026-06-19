@@ -67,7 +67,7 @@ export function Navbar() {
         transition={{ duration: 0.35, ease: "easeInOut" }}
         className="fixed top-0 left-0 right-0 z-50 bg-white/70 dark:bg-[var(--dark-bg)]/70 backdrop-blur-2xl border-b border-gray-200/30 dark:border-white/10 transition-colors duration-500 shadow-sm dark:shadow-none"
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="container-fluid">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <motion.a

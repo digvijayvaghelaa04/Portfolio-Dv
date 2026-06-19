@@ -39,7 +39,7 @@ export function Projects() {
         }}
       />
       
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="relative z-10 container-fluid">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -48,7 +48,7 @@ export function Projects() {
           className="text-center mb-16"
         >
           <h2 className="text-sm uppercase tracking-widest text-indigo-500 dark:text-indigo-400 mb-4 font-semibold">Portfolio</h2>
-          <h3 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          <h3 className="font-bold text-gray-900 dark:text-white mb-6">
             Featured <span className="text-indigo-600 dark:text-indigo-400">Projects</span>
           </h3>
           <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 dark:from-indigo-400 dark:to-purple-500 mx-auto rounded-full" />
@@ -77,7 +77,7 @@ export function Projects() {
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-10">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] gap-10">
           {filteredProjects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -113,7 +113,7 @@ export function Projects() {
 
                 {/* Content */}
                 <div className="p-8 flex flex-col flex-grow">
-                  <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                  <h4 className="font-bold text-gray-900 dark:text-white mb-3 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                     {project.title}
                   </h4>
 
@@ -139,7 +139,7 @@ export function Projects() {
                   </div>
 
                   {/* Links */}
-                  <div className="flex items-center gap-4 mt-auto">
+                  <div className="flex flex-wrap items-center gap-4 mt-auto">
                     {project.githubLink && (
                       <a
                         href={project.githubLink}

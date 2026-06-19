@@ -29,7 +29,7 @@ export function About() {
         }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="relative z-10 container-fluid">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -38,13 +38,13 @@ export function About() {
           className="text-center mb-20"
         >
           <h2 className="text-sm uppercase tracking-widest text-indigo-500 dark:text-indigo-400 mb-4 font-semibold">About Me</h2>
-          <h3 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          <h3 className="font-bold text-gray-900 dark:text-white mb-6">
             Turning Vision Into <span className="text-indigo-600 dark:text-indigo-400">Reality</span>
           </h3>
           <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 dark:from-indigo-400 dark:to-purple-500 mx-auto rounded-full" />
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-20">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,350px),1fr))] gap-12 lg:gap-16 items-center mb-20">
           {/* Left: Bio & Image (User wanted profile image added) */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -62,7 +62,7 @@ export function About() {
             </div>
 
             <div className="w-full">
-              <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+              <h4 className="font-semibold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
                 <Heart className="w-5 h-5 text-indigo-500 dark:text-indigo-400" />
                 What I Love
               </h4>
@@ -89,7 +89,7 @@ export function About() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="h-full flex flex-col justify-center"
           >
-             <div className="space-y-6 text-gray-600 dark:text-gray-300 text-lg leading-relaxed bg-white dark:bg-[#111]/50 p-8 rounded-3xl border border-gray-100 dark:border-white/5 shadow-xl dark:shadow-none backdrop-blur-md">
+             <div className="space-y-6 text-gray-600 dark:text-gray-300 leading-relaxed bg-white dark:bg-[#111]/50 p-8 rounded-3xl border border-gray-100 dark:border-white/5 shadow-xl dark:shadow-none backdrop-blur-md">
               <p>{portfolioData.about.bio}</p>
               <div className="h-px w-full bg-gradient-to-r from-transparent via-gray-200 dark:via-white/10 to-transparent my-6"></div>
               <p className="text-indigo-600 dark:text-indigo-400 font-medium leading-relaxed">{portfolioData.about.mission}</p>
@@ -102,7 +102,7 @@ export function About() {
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="grid md:grid-cols-3 gap-8"
+          className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,280px),1fr))] gap-8"
         >
           {[
             {
@@ -134,7 +134,7 @@ export function About() {
                   <div className="w-14 h-14 bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-indigo-100 dark:group-hover:bg-indigo-500/20 transition-colors duration-300">
                     <item.icon className="w-7 h-7 text-indigo-600 dark:text-indigo-400" />
                   </div>
-                  <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-3 tracking-wide">{item.title}</h4>
+                  <h4 className="font-bold text-gray-900 dark:text-white mb-3 tracking-wide">{item.title}</h4>
                   <p className="text-gray-600 dark:text-gray-400 leading-relaxed font-medium">{item.description}</p>
                 </div>
               </div>
