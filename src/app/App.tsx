@@ -11,6 +11,7 @@ import { Experience } from "./sections/Experience";
 import { Contact } from "./sections/Contact";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { MusicPlayer } from "./components/MusicPlayer";
 
 export default function App() {
   useEffect(() => {
@@ -49,6 +50,7 @@ export default function App() {
           <Contact />
         </main>
         <Footer />
+        <MusicPlayer />
 
         <Analytics />
         <SpeedInsights />

@@ -31,9 +31,9 @@ export function Footer() {
   ];
 
   return (
-    <footer className="relative bg-gray-50 dark:bg-[#050505] border-t border-gray-200 dark:border-white/10 overflow-hidden transition-colors duration-500">
+    <footer className="relative bg-[#0F172A] border-t border-white/10 overflow-hidden transition-colors duration-500">
       {/* Background Glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-100/50 via-transparent to-transparent dark:from-indigo-900/10 dark:via-black dark:to-black opacity-60" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[var(--primary)]/10 via-transparent to-transparent opacity-60" />
 
       <div className="relative z-10 container-fluid py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
@@ -45,10 +45,10 @@ export function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h3 className="font-bold text-gray-900 dark:text-white mb-4">
+              <h3 className="font-bold text-white mb-4">
                 {portfolioData.personal.name}
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed max-w-md font-medium">
+              <p className="text-gray-400 mb-8 leading-relaxed max-w-md font-medium">
                 {portfolioData.personal.tagline}. Building exceptional digital experiences
                 with modern web technologies.
               </p>
@@ -62,9 +62,9 @@ export function Footer() {
                     aria-label={social.label}
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.95 }}
-                    className="w-12 h-12 bg-white dark:bg-[#111] border border-gray-200 dark:border-white/10 rounded-xl flex items-center justify-center hover:bg-[var(--primary)] hover:border-[var(--primary)] dark:hover:bg-[var(--primary)] dark:hover:border-[var(--primary)] transition-all duration-300 group shadow-sm hover:shadow-[0_0_20px_var(--hero-primary-glow)] hover:-translate-y-1"
+                    className="w-12 h-12 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center hover:bg-[var(--primary)] hover:border-[var(--primary)] transition-all duration-300 group shadow-sm hover:shadow-[0_0_20px_rgba(108,76,241,0.6)] hover:-translate-y-1"
                   >
-                    <social.icon className="w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-white transition-colors" />
+                    <social.icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
                   </motion.a>
                 ))}
               </div>
@@ -79,7 +79,7 @@ export function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <h4 className="text-gray-900 dark:text-white font-bold mb-6 tracking-wide">Quick Links</h4>
+              <h4 className="text-white font-bold mb-6 tracking-wide">Quick Links</h4>
               <ul className="space-y-4">
                 {quickLinks.map((link) => (
                   <li key={link.name}>
@@ -89,7 +89,7 @@ export function Footer() {
                         e.preventDefault();
                         scrollToSection(link.href);
                       }}
-                      className="text-gray-600 dark:text-gray-400 hover:text-[var(--primary)] dark:hover:text-[var(--primary)] transition-colors font-medium inline-flex items-center gap-2 group"
+                      className="text-gray-400 hover:text-[var(--primary)] transition-colors font-medium inline-flex items-center gap-2 group"
                     >
                       <span className="w-0 h-[2px] bg-[var(--primary)] rounded-full group-hover:w-4 transition-all duration-300" />
                       {link.name}
@@ -108,12 +108,12 @@ export function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <h4 className="text-gray-900 dark:text-white font-bold mb-6 tracking-wide">Get in Touch</h4>
-              <ul className="space-y-4 text-gray-600 dark:text-gray-400 font-medium">
+              <h4 className="text-white font-bold mb-6 tracking-wide">Get in Touch</h4>
+              <ul className="space-y-4 text-gray-400 font-medium">
                 <li>
                   <a
                     href={`mailto:${portfolioData.personal.email}`}
-                    className="hover:text-[var(--primary)] dark:hover:text-[var(--primary)] transition-colors"
+                    className="hover:text-[var(--primary)] transition-colors break-all"
                   >
                     {portfolioData.personal.email}
                   </a>
@@ -121,19 +121,19 @@ export function Footer() {
                 <li>
                   <a
                     href={`tel:${portfolioData.personal.phone}`}
-                    className="hover:text-[var(--primary)] dark:hover:text-[var(--primary)] transition-colors flex items-center"
+                    className="hover:text-[var(--primary)] transition-colors flex items-center"
                   >
                     {portfolioData.personal.phone}
                   </a>
                 </li>
-                <li className="flex items-center text-gray-500 dark:text-gray-500">{portfolioData.personal.location}</li>
+                <li className="flex items-center text-gray-500">{portfolioData.personal.location}</li>
               </ul>
             </motion.div>
           </div>
         </div>
 
         {/* Divider */}
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-white/10 to-transparent mb-8" />
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-8" />
 
         {/* Bottom Bar */}
         <motion.div
@@ -143,12 +143,12 @@ export function Footer() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="flex flex-col md:flex-row items-center justify-between gap-4"
         >
-          <p className="text-gray-500 dark:text-gray-500 text-sm font-medium text-center md:text-left">
+          <p className="text-gray-500 text-sm font-medium text-center md:text-left">
             © {new Date().getFullYear()} {portfolioData.personal.name}. All rights
             reserved.
           </p>
 
-          <p className="text-gray-500 dark:text-gray-500 text-sm font-medium flex items-center gap-2">
+          <p className="text-gray-500 text-sm font-medium flex items-center gap-2">
             Made with <Heart className="w-4 h-4 text-red-500 fill-red-500 animate-pulse" /> and React
           </p>
         </motion.div>
@@ -162,7 +162,7 @@ export function Footer() {
         viewport={{ once: false }}
         whileHover={{ scale: 1.1, y: -2 }}
         whileTap={{ scale: 0.9 }}
-        className="fixed bottom-8 right-8 w-12 h-12 bg-[var(--primary)] text-white rounded-full flex items-center justify-center shadow-lg dark:shadow-[0_0_30px_var(--border-glow)] hover:bg-[var(--accent-blue)] transition-all duration-300 z-40 hover:shadow-[0_0_20px_var(--hero-primary-glow)]"
+        className="fixed bottom-8 right-8 w-12 h-12 bg-[var(--primary)] text-white rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(108,76,241,0.5)] hover:bg-[var(--accent-blue)] transition-all duration-300 z-40 hover:shadow-[0_0_30px_rgba(108,76,241,0.8)]"
       >
         <ArrowUp className="w-5 h-5" />
       </motion.button>

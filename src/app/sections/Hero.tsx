@@ -39,32 +39,9 @@ export function Hero() {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_70%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
 
       {/* Subtle Glowing Orbs for that modern 1% feel */}
-      <motion.div
-        className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-[var(--hero-primary-glow)] dark:bg-[var(--hero-red-glow)] rounded-full blur-[150px]"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
-          x: [0, 50, 0],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-      <motion.div
-        className="absolute bottom-1/4 -right-32 w-[500px] h-[500px] bg-[var(--accent-blue)]/20 dark:bg-[var(--accent-red)]/20 rounded-full blur-[150px]"
-        animate={{
-          scale: [1.2, 1, 1.2],
-          opacity: [0.3, 0.5, 0.3],
-          y: [0, -50, 0],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[var(--primary)]/30 rounded-full blur-[120px] animate-blob mix-blend-multiply dark:mix-blend-screen" />
+      <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-[var(--accent-blue)]/30 rounded-full blur-[120px] animate-blob animation-delay-2000 mix-blend-multiply dark:mix-blend-screen" />
+      <div className="absolute bottom-1/4 left-1/3 w-[600px] h-[600px] bg-purple-500/20 rounded-full blur-[150px] animate-blob animation-delay-4000 mix-blend-multiply dark:mix-blend-screen" />
 
       {/* Content */}
       <motion.div 
@@ -127,7 +104,7 @@ export function Hero() {
         >
           <button
             onClick={() => scrollToSection("projects")}
-            className="group relative flex items-center justify-center gap-2 px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-black font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.1)] dark:hover:shadow-[0_0_40px_rgba(255,255,255,0.3)] w-full sm:w-auto"
+            className="group relative flex items-center justify-center gap-2 px-8 py-4 bg-[var(--primary)] text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:bg-[var(--accent-blue)] hover:shadow-[0_0_40px_rgba(108,76,241,0.4)] w-full sm:w-auto"
           >
             <span>View Projects</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -143,7 +120,7 @@ export function Hero() {
           <a
             href={cvPdf}
             download="Digvijay_Vaghela_CV.pdf"
-            className="group relative flex items-center justify-center gap-2 px-8 py-4 bg-indigo-600 dark:bg-indigo-500 text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:bg-indigo-700 dark:hover:bg-indigo-600 hover:shadow-[0_0_40px_rgba(79,70,229,0.3)] w-full sm:w-auto"
+            className="group relative flex items-center justify-center gap-2 px-8 py-4 bg-white/10 dark:bg-white/5 backdrop-blur-md text-gray-900 dark:text-white font-semibold rounded-full border border-gray-200 dark:border-white/10 overflow-hidden transition-all duration-300 hover:scale-105 hover:bg-gray-50 dark:hover:bg-white/10 hover:shadow-[0_0_30px_rgba(108,76,241,0.2)] w-full sm:w-auto"
           >
             <span>Download CV</span>
             <Download className="w-5 h-5 group-hover:translate-y-1 transition-transform" />

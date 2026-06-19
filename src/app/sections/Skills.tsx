@@ -66,8 +66,8 @@ export function Skills() {
               onClick={() => setActiveTab(tab.id)}
               className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 flex items-center justify-center ${
                 activeTab === tab.id
-                  ? "bg-gray-900 dark:bg-white text-white dark:text-gray-900 shadow-md transform scale-105"
-                  : "bg-white dark:bg-[#111] text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20 hover:text-gray-900 dark:hover:text-white"
+                  ? "bg-[var(--primary)] text-white shadow-lg transform scale-105 shadow-[0_0_20px_rgba(108,76,241,0.4)]"
+                  : "glass-card text-gray-600 dark:text-gray-400 hover:text-[var(--primary)] dark:hover:text-[var(--primary)] hover:border-[var(--primary)]/50"
               }`}
             >
               <span className="mr-2 text-xl">{tab.icon}</span>
@@ -86,7 +86,7 @@ export function Skills() {
               transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
               className="group"
             >
-              <div className="p-6 bg-white dark:bg-[var(--card-dark)]/80 border border-gray-200 dark:border-white/5 hover:border-[var(--primary)] dark:hover:border-[var(--primary)] transition-all duration-500 rounded-3xl hover:shadow-2xl dark:hover:shadow-[0_0_30px_var(--border-glow)] shadow-lg dark:shadow-none backdrop-blur-md relative overflow-hidden z-10 flex flex-col gap-4 hover:-translate-y-2">
+              <div className="p-6 glass-card hover:border-[var(--primary)]/50 transition-all duration-500 rounded-3xl hover:shadow-2xl dark:hover:shadow-[0_0_30px_rgba(108,76,241,0.3)] shadow-lg relative overflow-hidden z-10 flex flex-col gap-4 hover:-translate-y-2 group">
                 <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/5 dark:from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="relative z-10 flex items-center gap-4 w-full">
                   <span className="text-4xl drop-shadow-sm">{skill.icon}</span>

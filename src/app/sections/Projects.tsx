@@ -67,8 +67,8 @@ export function Projects() {
               onClick={() => setFilter(category)}
               className={`px-6 py-2 rounded-full font-medium transition-all duration-300 capitalize flex items-center justify-center ${
                 filter === category
-                  ? "bg-gray-900 dark:bg-white text-white dark:text-gray-900 shadow-md transform scale-105"
-                  : "bg-white dark:bg-[#111] text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20 hover:text-gray-900 dark:hover:text-white"
+                  ? "bg-[var(--primary)] text-white shadow-lg transform scale-105 shadow-[0_0_20px_rgba(108,76,241,0.4)]"
+                  : "glass-card text-gray-600 dark:text-gray-400 hover:text-[var(--primary)] hover:border-[var(--primary)]/50"
               }`}
             >
               {category}
@@ -87,7 +87,7 @@ export function Projects() {
               layout
               className="group relative"
             >
-              <div className="relative bg-white dark:bg-[#111]/80 border border-gray-200 dark:border-white/5 rounded-3xl overflow-hidden hover:border-[var(--primary)] dark:hover:border-[var(--primary)] transition-all duration-500 hover:shadow-[0_20px_40px_rgba(108,76,241,0.15)] dark:hover:shadow-[0_0_40px_rgba(108,76,241,0.2)] shadow-lg dark:shadow-none h-full flex flex-col backdrop-blur-sm z-10 hover:-translate-y-3">
+              <div className="relative glass-card rounded-3xl overflow-hidden hover:border-[var(--primary)]/50 transition-all duration-500 hover:shadow-[0_20px_40px_rgba(108,76,241,0.15)] dark:hover:shadow-[0_0_40px_rgba(108,76,241,0.2)] shadow-lg h-full flex flex-col z-10 hover:-translate-y-3">
                 {/* Featured Badge */}
                 {project.featured && (
                   <div className="absolute top-4 right-4 z-20 px-3 py-1.5 bg-indigo-600/90 dark:bg-indigo-500/90 backdrop-blur-md text-white text-xs font-bold tracking-wider rounded-full flex items-center gap-1.5 shadow-lg">
@@ -145,7 +145,7 @@ export function Projects() {
                         href={project.githubLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gray-900 dark:bg-white text-white dark:text-black font-semibold rounded-xl hover:bg-gray-800 dark:hover:bg-gray-200 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-[#0F172A] dark:bg-white/10 text-white font-semibold rounded-xl hover:bg-gray-800 dark:hover:bg-white/20 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
                       >
                         <Github className="w-5 h-5" />
                         <span className="text-sm md:text-base">Source Code</span>

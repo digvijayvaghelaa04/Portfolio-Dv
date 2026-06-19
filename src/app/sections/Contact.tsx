@@ -251,7 +251,7 @@ export function Contact() {
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="bg-white dark:bg-[#111]/80 backdrop-blur-md p-8 md:p-10 rounded-3xl border border-indigo-100 dark:border-white/5 shadow-xl dark:shadow-[0_0_40px_rgba(255,255,255,0.02)]"
+            className="glass-card p-8 md:p-10 rounded-3xl shadow-xl dark:shadow-[0_0_40px_rgba(108,76,241,0.1)] hover:shadow-2xl transition-shadow duration-300"
           >
             <form onSubmit={handleSubmit} className="space-y-6 relative">
               
@@ -280,7 +280,7 @@ export function Contact() {
                   disabled={isSubmitting}
                   className={`w-full px-5 py-4 bg-gray-50 dark:bg-black/50 border ${
                     errors.name ? "border-red-500" : "border-gray-200 dark:border-white/10"
-                  } rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  } rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/50 focus:border-[var(--primary)] transition-all ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''} hover:border-[var(--primary)]/30`}
                   placeholder="Digvijay Vaghela "
                 />
                 {errors.name && (
@@ -304,7 +304,7 @@ export function Contact() {
                   disabled={isSubmitting}
                   className={`w-full px-5 py-4 bg-gray-50 dark:bg-black/50 border ${
                     errors.email ? "border-red-500" : "border-gray-200 dark:border-white/10"
-                  } rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  } rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/50 focus:border-[var(--primary)] transition-all ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''} hover:border-[var(--primary)]/30`}
                   placeholder="dig@example.com"
                 />
                 {errors.email && (
@@ -328,7 +328,7 @@ export function Contact() {
                   disabled={isSubmitting}
                   className={`w-full px-5 py-4 bg-gray-50 dark:bg-black/50 border ${
                     errors.subject ? "border-red-500" : "border-gray-200 dark:border-white/10"
-                  } rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  } rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/50 focus:border-[var(--primary)] transition-all ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''} hover:border-[var(--primary)]/30`}
                   placeholder="Project Inquiry"
                 />
                 {errors.subject && (
@@ -352,7 +352,7 @@ export function Contact() {
                   rows={5}
                   className={`w-full px-5 py-4 bg-gray-50 dark:bg-black/50 border ${
                     errors.message ? "border-red-500" : "border-gray-200 dark:border-white/10"
-                  } rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all resize-none ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  } rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/50 focus:border-[var(--primary)] transition-all resize-none ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''} hover:border-[var(--primary)]/30`}
                   placeholder="Tell me about your project or opportunity..."
                 />
                 {errors.message && (

@@ -38,7 +38,7 @@ export function Experience() {
         {/* Timeline */}
         <div className="relative">
           {/* Center Line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[var(--grad-1-start)]/50 via-[var(--grad-1-end)]/30 to-transparent hidden lg:block" />
+          <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-[var(--primary)] via-[var(--accent-blue)] to-transparent hidden lg:block opacity-50" />
 
           {/* Timeline Items */}
           <div className="space-y-16">
@@ -108,14 +108,14 @@ export function Experience() {
                       transition={{ duration: 0.4, delay: index * 0.2 + 0.1 }}
                       className="relative"
                     >
-                      <div className="w-6 h-6 bg-[var(--primary)] rounded-full border-4 border-gray-50 dark:border-[#050505]" />
+                      <div className="w-6 h-6 bg-[var(--primary)] rounded-full border-4 border-gray-50 dark:border-[#050505] shadow-[0_0_15px_rgba(108,76,241,0.6)]" />
                       <div className="absolute inset-0 bg-[var(--primary)] rounded-full animate-ping opacity-75" />
                     </motion.div>
                   </div>
 
                   {/* Right Side - Content Card */}
                   <div className={isLeft ? "lg:order-2" : ""}>
-                    <div className="p-8 bg-white dark:bg-[#111]/80 border border-gray-200 dark:border-white/5 rounded-3xl hover:border-[var(--primary)] dark:hover:border-[var(--primary)] transition-all duration-500 hover:shadow-2xl dark:hover:shadow-[0_0_30px_var(--border-glow)] shadow-lg dark:shadow-none backdrop-blur-sm group relative overflow-hidden z-10 hover:-translate-y-2">
+                    <div className="p-8 glass-card rounded-3xl hover:border-[var(--primary)]/50 transition-all duration-500 hover:shadow-2xl dark:hover:shadow-[0_0_30px_rgba(108,76,241,0.3)] shadow-lg group relative overflow-hidden z-10 hover:-translate-y-2">
                       <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 dark:from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       <div className="relative">
                         <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed font-medium">

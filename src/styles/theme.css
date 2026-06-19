@@ -48,9 +48,9 @@
   --accent-blue: #8B5CF6;
   --light-bg: #F8FAFC;
   --lighter-bg: #ffffff;
-  --card-light: #ffffff;
-  --border-light: rgba(0, 0, 0, 0.08);
-  --grad-1-start: #7C3AED;
+  --card-light: rgba(255, 255, 255, 0.85);
+  --border-light: rgba(108, 76, 241, 0.1);
+  --grad-1-start: #6C4CF1;
   --grad-1-end: #8B5CF6;
   --grad-2-start: #0F172A;
   --grad-2-end: #1E293B;
@@ -97,11 +97,11 @@
   --hero-red: #6C4CF1;
   --hero-red-glow: rgba(108, 76, 241, 0.5);
   --accent-red: #8B5CF6;
-  --dark-bg: #050505;
-  --darker-bg: #020202;
-  --card-dark: #111111;
-  --border-glow: rgba(108, 76, 241, 0.2);
-  --grad-1-start: #7C3AED;
+  --dark-bg: #0F172A;
+  --darker-bg: #050505;
+  --card-dark: rgba(30, 41, 59, 0.7);
+  --border-glow: rgba(108, 76, 241, 0.3);
+  --grad-1-start: #6C4CF1;
   --grad-1-end: #8B5CF6;
   --grad-2-start: #0F172A;
   --grad-2-end: #1E293B;
@@ -222,4 +222,58 @@
     font-weight: var(--font-weight-normal);
     line-height: 1.5;
   }
+}
+
+@layer utilities {
+  .glass-card {
+    background: var(--card-light);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-light);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+  }
+
+  .dark .glass-card {
+    background: var(--card-dark);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .glass-navbar {
+    background: rgba(248, 250, 252, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(108, 76, 241, 0.1);
+  }
+
+  .dark .glass-navbar {
+    background: rgba(15, 23, 42, 0.75);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(to right, var(--grad-1-start), var(--grad-1-end));
+  }
+}
+
+@keyframes blob {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
 }

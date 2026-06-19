@@ -65,7 +65,7 @@ export function Navbar() {
         }}
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.35, ease: "easeInOut" }}
-        className="fixed top-0 left-0 right-0 z-50 bg-white/70 dark:bg-[var(--dark-bg)]/70 backdrop-blur-2xl border-b border-gray-200/30 dark:border-white/10 transition-colors duration-500 shadow-sm dark:shadow-none"
+        className="fixed top-0 left-0 right-0 z-50 glass-navbar transition-colors duration-500 shadow-sm dark:shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
       >
         <div className="container-fluid">
           <div className="flex items-center justify-between h-20">
@@ -142,7 +142,7 @@ export function Navbar() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: 0.6 }}
-                className="px-6 py-2.5 bg-gray-900 dark:bg-white text-white dark:text-black font-semibold rounded-full hover:bg-gray-800 dark:hover:bg-gray-200 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+                className="px-6 py-2.5 bg-[var(--primary)] text-white font-semibold rounded-full hover:bg-[var(--accent-blue)] transition-all duration-300 hover:shadow-[0_0_20px_rgba(108,76,241,0.4)] hover:-translate-y-0.5"
               >
                 Hire Me
               </motion.button>
@@ -166,7 +166,7 @@ export function Navbar() {
             opacity: isOpen ? 1 : 0,
           }}
           transition={{ duration: 0.3 }}
-          className="md:hidden overflow-hidden bg-white dark:bg-[#050505] border-t border-gray-200 dark:border-white/10"
+          className="md:hidden overflow-hidden glass-navbar"
         >
           <div className="px-6 py-6 space-y-2">
             {navItems.map((item) => {
@@ -211,7 +211,7 @@ export function Navbar() {
               
               <button
                 onClick={() => scrollToSection("#contact")}
-                className="w-full px-4 py-3 bg-gray-900 dark:bg-white text-white dark:text-black rounded-xl font-semibold transition-colors"
+                className="w-full px-4 py-3 bg-[var(--primary)] text-white rounded-xl font-semibold hover:bg-[var(--accent-blue)] transition-colors hover:shadow-[0_0_15px_rgba(108,76,241,0.3)]"
               >
                 Hire Me
               </button>
