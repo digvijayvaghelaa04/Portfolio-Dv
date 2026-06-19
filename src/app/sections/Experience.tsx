@@ -68,9 +68,7 @@ export function Experience() {
                         initial={{ scale: 0 }}
                         animate={isInView ? { scale: 1 } : {}}
                         transition={{ duration: 0.4, delay: index * 0.2 + 0.2 }}
-                        className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br ${
-                          isWork ? "from-[var(--grad-1-start)] to-[var(--grad-1-end)]" : "from-[var(--grad-2-start)] to-[var(--grad-2-end)]"
-                        } rounded-2xl mb-4 shadow-lg`}
+                        className="inline-flex items-center justify-center w-16 h-16 bg-[#0F172A] rounded-2xl mb-4 shadow-lg"
                       >
                         {isWork ? (
                           <Briefcase className="w-8 h-8 text-white" />
