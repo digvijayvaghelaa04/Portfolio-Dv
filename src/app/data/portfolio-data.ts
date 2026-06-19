@@ -3,7 +3,7 @@ import profileImg from "../../imports/images/IMG_0133.png";
 export const portfolioData = {
   personal: {
     name: "Digvijay Vaghela",
-    role: "Full Stack Developer | React Developer | Freelance Web Developer",
+    role: "React Developer | Freelance Web Developer",
     tagline: "Building Scalable Digital Solutions",
     description: "I am a passionate Full Stack Developer with strong hands-on experience in building modern web applications. Currently strengthening my backend skills. I focus on creating scalable, responsive, and user-friendly digital solutions using modern JavaScript technologies. I am available for freelance projects, business websites, portfolio websites, and custom web applications.",
     email: "digvijayvahelaa04@gmail.com",
