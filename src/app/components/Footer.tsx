@@ -160,7 +160,7 @@ export function Footer() {
         viewport={{ once: false }}
         whileHover={{ scale: 1.1, y: -2 }}
         whileTap={{ scale: 0.9 }}
-        className="fixed bottom-8 right-8 w-12 h-12 bg-[var(--text-main)] text-white rounded-full flex items-center justify-center shadow-md hover:bg-[var(--primary)] transition-all duration-300 z-40 hover:shadow-lg"
+        className="fixed z-50 right-4 md:right-8 bottom-[calc(24px+env(safe-area-inset-bottom))] w-[52px] h-[52px] bg-[var(--text-main)] text-white rounded-full flex items-center justify-center shadow-md hover:bg-[var(--primary)] transition-all duration-300 hover:shadow-lg"
       >
         <ArrowUp className="w-5 h-5" />
       </motion.button>

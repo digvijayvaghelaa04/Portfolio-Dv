@@ -89,7 +89,7 @@ export function MusicPlayer() {
   };
 
   return (
-    <div className="fixed bottom-24 right-4 md:right-8 z-40 flex flex-col items-end gap-4 pointer-events-none">
+    <div className="fixed z-50 flex flex-col gap-4 pointer-events-none left-4 md:left-auto md:right-8 items-start md:items-end bottom-[calc(24px+env(safe-area-inset-bottom))] md:bottom-[calc(92px+env(safe-area-inset-bottom))]">
       {/* Expandable Player Panel */}
       <AnimatePresence>
         {isOpen && (
@@ -168,7 +168,7 @@ export function MusicPlayer() {
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className={`w-12 h-12 rounded-full flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 relative pointer-events-auto ${
+        className={`w-[52px] h-[52px] rounded-full flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 relative pointer-events-auto ${
           isOpen || isPlaying
             ? 'bg-[var(--text-main)] text-white border-none' 
             : 'glass-card text-gray-700 dark:text-gray-300 hover:text-[var(--primary)] border border-gray-200 dark:border-white/10'
