@@ -12,28 +12,12 @@ import { Contact } from "./sections/Contact";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { MusicPlayer } from "./components/MusicPlayer";
+import { CustomCursor } from "./components/CustomCursor";
 
 export default function App() {
   useEffect(() => {
     // Smooth scroll behavior
     document.documentElement.style.scrollBehavior = "smooth";
-
-    // Optional: Custom cursor effect
-    const cursor = document.createElement("div");
-    cursor.className = "custom-cursor";
-    document.body.appendChild(cursor);
-
-    const updateCursor = (e: MouseEvent) => {
-      cursor.style.left = `${e.clientX}px`;
-      cursor.style.top = `${e.clientY}px`;
-    };
-
-    document.addEventListener("mousemove", updateCursor);
-
-    return () => {
-      document.removeEventListener("mousemove", updateCursor);
-      document.body.removeChild(cursor);
-    };
   }, []);
 
   return (
@@ -51,33 +35,16 @@ export default function App() {
         </main>
         <Footer />
         <MusicPlayer />
+        <CustomCursor />
 
         <Analytics />
         <SpeedInsights />
 
-        {/* Custom Cursor Styles */}
+        {/* Global Styles */}
         <style>{`
-          .custom-cursor {
-            width: 24px;
-            height: 24px;
-            border: 2px solid rgba(99, 102, 241, 0.5); /* indigo-500 */
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: width 0.2s, height 0.2s, border-color 0.2s;
-            mix-blend-mode: difference;
-          }
-
-          .dark .custom-cursor {
-            border-color: rgba(167, 139, 250, 0.5); /* purple-400 */
-            background-color: rgba(167, 139, 250, 0.1);
-          }
-
-          @media (max-width: 768px) {
-            .custom-cursor {
-              display: none;
+          @media (pointer: fine) {
+            body, a, button, [role="button"], input, select, textarea {
+              cursor: none !important;
             }
           }
 

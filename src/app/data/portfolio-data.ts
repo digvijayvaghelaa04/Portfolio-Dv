@@ -1,4 +1,7 @@
 import profileImg from "../../imports/images/IMG_0133.png";
+import batHouseImg from "../../imports/images/bat_house_mockup.png";
+import portfolioImg from "../../imports/images/portfolio_mockup.png";
+import elearningImg from "../../imports/images/elearning_mockup.png";
 
 export const portfolioData = {
   personal: {
@@ -78,7 +81,7 @@ export const portfolioData = {
       title: "Vishwakarma Bat House",
       category: "E-Commerce",
       description: "A modern cricket bat e-commerce website built for showcasing premium bats, product details, responsive UI, and smooth user experience.",
-      image: "https://images.unsplash.com/photo-1540126034813-121bf29033d2?w=800&h=600&fit=crop",
+      image: batHouseImg,
       technologies: ["React.js", "Next.js", "Tailwind CSS", "JavaScript", "Responsive Design"],
       liveLink: "https://vishwakarmabathouse.in/",
       githubLink: "",
@@ -89,10 +92,10 @@ export const portfolioData = {
       title: "Personal Portfolio Website",
       category: "Personal Branding",
       description: "A modern responsive portfolio website created to showcase my skills, projects, experience, freelancing work, and contact information.",
-      image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=600&fit=crop",
+      image: portfolioImg,
       technologies: ["React.js", "Tailwind CSS", "Framer Motion"],
       liveLink: "https://portfolio-dv-six.vercel.app/",
-      githubLink: "https://github.com/digvijayvaghelaa04/Portfolio-Dv",
+      githubLink: "",
       featured: true,
     },
     {
@@ -100,7 +103,7 @@ export const portfolioData = {
       title: "E-Learning Platform",
       category: "E-Learning",
       description: "A full stack e-learning platform where students can access courses, track learning progress, view lessons, and manage their learning journey.",
-      image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&h=600&fit=crop",
+      image: elearningImg,
       technologies: ["React.js", "Node.js", "Express.js", "MySQL", "MongoDB"],
       liveLink: "",
       githubLink: "https://github.com/digvijayvaghelaa04/TechDV",

@@ -90,7 +90,8 @@ export function Projects() {
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute bottom-4 left-4 z-20">
                     <span className="inline-block px-3 py-1 bg-white/20 dark:bg-black/50 backdrop-blur-md border border-white/30 dark:border-white/20 rounded-full text-white text-xs font-semibold tracking-wide">
