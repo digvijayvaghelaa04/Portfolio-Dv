@@ -9,7 +9,7 @@ export function PortfolioAssistant() {
     {
       id: "1",
       sender: "ai",
-      text: getGreeting(),
+      text: "Hi, I'm Jarvis. I can tell you everything about Digvijay.",
       timestamp: new Date()
     }
   ]);
@@ -25,11 +25,20 @@ export function PortfolioAssistant() {
   };
 
   useEffect(() => {
+    const handleOpenJarvis = () => setIsOpen(true);
+    window.addEventListener('open-jarvis', handleOpenJarvis);
+    return () => window.removeEventListener('open-jarvis', handleOpenJarvis);
+  }, []);
+
+  useEffect(() => {
     if (isOpen) {
       setTimeout(() => {
         inputRef.current?.focus();
         scrollToBottom();
       }, 100);
+      document.body.style.overflow = window.innerWidth < 768 ? "hidden" : "auto";
+    } else {
+      document.body.style.overflow = "auto";
     }
   }, [isOpen]);
 
@@ -51,6 +60,14 @@ export function PortfolioAssistant() {
     const text = textInput ?? inputValue;
     if (!text.trim()) return;
 
+    // Special handler for "Download Resume" to use the new modal
+    if (text === "Download Resume") {
+      setIsOpen(false);
+      window.dispatchEvent(new CustomEvent('open-resume'));
+      setInputValue("");
+      return;
+    }
+
     const userMsg: Message = {
       id: Date.now().toString(),
       sender: "user",
@@ -62,17 +79,13 @@ export function PortfolioAssistant() {
     if (!textInput) setInputValue("");
     setIsTyping(true);
 
-    // Simulate typing delay for AI feel
     setTimeout(() => {
       const { response, links, newContext } = generateResponse(userMsg.text, context);
       setContext(newContext);
 
-      // Add fallback quick actions if the question was unclear
       const finalLinks = response.includes("I'm not entirely sure") ? [
         { label: "View Projects", url: "#projects" },
-        { label: "Download CV", url: "/src/imports/Digvijay_Vaghela_CV.pdf.pdf" },
         { label: "Contact Digvijay", url: "#contact" },
-        { label: "Hire for Freelance", url: "mailto:digvijayvaghelaa04@gmail.com" }
       ] : links;
 
       const aiMsg: Message = {
@@ -88,10 +101,12 @@ export function PortfolioAssistant() {
   };
 
   const suggestedQuestions = [
-    "Who is Digvijay?",
-    "Tell me about his skills",
+    "Tell me about Digvijay",
     "What projects has he built?",
-    "Can I hire him?"
+    "Why should I hire him?",
+    "Download Resume",
+    "Contact Digvijay",
+    "Is he available for freelance work?"
   ];
 
   return (

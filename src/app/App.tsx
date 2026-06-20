@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ThemeProvider } from "./context/ThemeContext";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { Hero } from "./sections/Hero";
 import { About } from "./sections/About";
+import { WhyHireMe } from "./sections/WhyHireMe";
 import { Services } from "./sections/Services";
 import { Skills } from "./sections/Skills";
 import { Projects } from "./sections/Projects";
@@ -13,20 +14,33 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { PortfolioAssistant } from "./components/PortfolioAssistant";
 import { CustomCursor } from "./components/CustomCursor";
+import { CommandPalette } from "./components/CommandPalette";
+import { MobileDock } from "./components/MobileDock";
+import { ScrollProgress } from "./components/ScrollProgress";
+import { PremiumBackground } from "./components/PremiumBackground";
+import { ResumeModal } from "./components/ResumeModal";
 
 export default function App() {
+  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
+
   useEffect(() => {
     // Smooth scroll behavior
     document.documentElement.style.scrollBehavior = "smooth";
+
+    const handleOpenResume = () => setIsResumeModalOpen(true);
+    window.addEventListener("open-resume", handleOpenResume);
+    return () => window.removeEventListener("open-resume", handleOpenResume);
   }, []);
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-white dark:bg-[#050505] text-gray-900 dark:text-white overflow-x-hidden transition-colors duration-500">
+      <div className="min-h-screen text-gray-900 dark:text-white overflow-x-hidden transition-colors duration-500 relative">
+        <PremiumBackground />
         <Navbar />
         <main>
           <Hero />
           <About />
+          <WhyHireMe />
           <Services />
           <Skills />
           <Projects />
@@ -34,7 +48,13 @@ export default function App() {
           <Contact />
         </main>
         <Footer />
+        
+        {/* Global Floating Components */}
         <PortfolioAssistant />
+        <CommandPalette />
+        <MobileDock />
+        <ScrollProgress />
+        <ResumeModal isOpen={isResumeModalOpen} onClose={() => setIsResumeModalOpen(false)} />
         <CustomCursor />
 
         <Analytics />

@@ -12,7 +12,7 @@ export type ConversationContext = {
   lastTopic: "about" | "projects" | "freelance" | "contact" | "skills" | "experience" | null;
 };
 
-const GREETING = "Hi, I'm Jarvis 👋\nI can answer questions about Digvijay's skills, projects, experience, education, freelance services, and contact details.";
+const GREETING = "Hi, I'm Jarvis. I can tell you everything about Digvijay.";
 const DEFAULT_RESPONSE = "I'm not entirely sure, but I can help you with information about Digvijay's skills, projects, education, experience, freelance services, and contact details. What would you like to know?";
 
 export const generateResponse = (input: string, context: ConversationContext): { response: string; links?: { url: string; label: string }[]; newContext: ConversationContext } => {

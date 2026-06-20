@@ -4,6 +4,137 @@ import { useRef, useState } from "react";
 import { Github, Sparkles, ExternalLink } from "lucide-react";
 import { portfolioData } from "../data/portfolio-data";
 
+function ProjectCard({ project, index, isInView }: { project: any, index: number, isInView: boolean }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+      layout
+      className="group relative"
+    >
+      <div className="relative bg-white dark:bg-[#0F172A] rounded-3xl overflow-hidden border border-gray-200 dark:border-white/10 transition-all duration-300 hover:shadow-xl shadow-sm h-full flex flex-col z-10 hover:-translate-y-1">
+        {/* Featured Badge */}
+        {project.featured && (
+          <div className="absolute top-4 right-4 z-20 px-3 py-1.5 bg-indigo-600/90 dark:bg-indigo-500/90 backdrop-blur-md text-white text-xs font-bold tracking-wider rounded-full flex items-center gap-1.5 shadow-lg">
+            <Sparkles className="w-3.5 h-3.5" />
+            Featured
+          </div>
+        )}
+
+        {/* Project Image */}
+        <div className="relative h-60 overflow-hidden shrink-0 cursor-pointer" onClick={() => setIsExpanded(!isExpanded)}>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 transition-opacity group-hover:opacity-80" />
+          <img
+            src={project.image}
+            alt={project.title}
+            loading="lazy"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div className="absolute bottom-4 left-4 z-20">
+            <span className="inline-block px-3 py-1 bg-white/20 dark:bg-black/50 backdrop-blur-md border border-white/30 dark:border-white/20 rounded-full text-white text-xs font-semibold tracking-wide">
+              {project.category}
+            </span>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="p-6 md:p-8 flex flex-col flex-grow">
+          <div className="flex justify-between items-start mb-3">
+            <h4 className="font-bold text-xl text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+              {project.title}
+            </h4>
+          </div>
+
+          <p className="text-gray-600 dark:text-gray-400 text-sm mb-5 leading-relaxed">
+            {project.description}
+          </p>
+
+          {/* Tech Stack Highlights */}
+          <div className="flex flex-wrap gap-2 mb-4">
+            {project.technologies.map((tech: string) => (
+              <span
+                key={tech}
+                className="px-2.5 py-1 bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20 rounded text-indigo-700 dark:text-indigo-300 text-xs font-medium"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+
+          {/* Badges */}
+          {project.badges && (
+            <div className="flex flex-wrap gap-2 mb-6">
+              {project.badges.map((badge: string) => (
+                <span key={badge} className="px-2 py-1 bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 text-[10px] uppercase tracking-wider font-bold rounded-md">
+                  {badge}
+                </span>
+              ))}
+            </div>
+          )}
+
+          {/* Expandable Case Study Details */}
+          {(project.problem || project.solution) && (
+            <div className="mt-auto mb-6">
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="w-full py-2.5 px-4 bg-gray-50 dark:bg-white/5 hover:bg-gray-100 dark:hover:bg-white/10 rounded-xl text-sm font-semibold text-gray-700 dark:text-gray-300 transition-colors flex justify-center items-center gap-2"
+              >
+                {isExpanded ? "Hide Case Study" : "View Case Study"}
+              </button>
+              
+              <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isExpanded ? "max-h-[500px] opacity-100 mt-4" : "max-h-0 opacity-0"}`}>
+                <div className="space-y-4 bg-gray-50 dark:bg-[#0F172A]/50 p-5 rounded-2xl border border-gray-100 dark:border-white/5">
+                  {project.problem && (
+                    <div>
+                      <span className="text-xs font-bold uppercase tracking-wider text-indigo-500 dark:text-indigo-400 block mb-1">Challenge</span>
+                      <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{project.problem}</p>
+                    </div>
+                  )}
+                  {project.solution && (
+                    <div>
+                      <span className="text-xs font-bold uppercase tracking-wider text-emerald-500 dark:text-emerald-400 block mb-1">Solution</span>
+                      <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{project.solution}</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Links */}
+          <div className="flex flex-wrap items-center gap-4 mt-auto">
+            {project.githubLink && project.id !== 2 && ( // Hide source code for personal portfolio
+              <a
+                href={project.githubLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-[#0F172A] dark:bg-white/10 text-white font-semibold rounded-xl hover:bg-gray-800 dark:hover:bg-white/20 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+              >
+                <Github className="w-5 h-5" />
+                <span className="text-sm md:text-base">Source Code</span>
+              </a>
+            )}
+            {project.liveLink && (
+              <a
+                href={project.liveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-[var(--primary)] text-white font-semibold rounded-xl hover:bg-[var(--accent-blue)] transition-all duration-300 hover:shadow-md hover:-translate-y-0.5"
+              >
+                <ExternalLink className="w-5 h-5" />
+                <span className="text-sm md:text-base">Live Demo</span>
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 export function Projects() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -27,7 +158,7 @@ export function Projects() {
       {/* Background Elements */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20" />
 
-      <div className="relative z-10 container-fluid">
+      <div className="relative z-10 container-fluid max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -65,120 +196,9 @@ export function Projects() {
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
           {filteredProjects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-              layout
-              className="group relative"
-            >
-              <div className="relative glass-card rounded-3xl overflow-hidden hover:border-[var(--border-light)] transition-all duration-300 hover:shadow-xl shadow-sm h-full flex flex-col z-10 hover:-translate-y-1">
-                {/* Featured Badge */}
-                {project.featured && (
-                  <div className="absolute top-4 right-4 z-20 px-3 py-1.5 bg-indigo-600/90 dark:bg-indigo-500/90 backdrop-blur-md text-white text-xs font-bold tracking-wider rounded-full flex items-center gap-1.5 shadow-lg">
-                    <Sparkles className="w-3.5 h-3.5" />
-                    Featured
-                  </div>
-                )}
-
-                {/* Project Image */}
-                <div className="relative h-60 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute bottom-4 left-4 z-20">
-                    <span className="inline-block px-3 py-1 bg-white/20 dark:bg-black/50 backdrop-blur-md border border-white/30 dark:border-white/20 rounded-full text-white text-xs font-semibold tracking-wide">
-                      {project.category}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-8 flex flex-col flex-grow">
-                  <h4 className="font-bold text-xl text-gray-900 dark:text-white mb-3 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-                    {project.title}
-                  </h4>
-
-                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-5 leading-relaxed">
-                    {project.description}
-                  </p>
-
-                  {/* Case Study Details */}
-                  {(project.problem || project.solution) && (
-                    <div className="mb-6 space-y-4 bg-gray-50 dark:bg-[#0F172A]/50 p-5 rounded-2xl border border-gray-100 dark:border-white/5 flex-grow">
-                      {project.problem && (
-                        <div>
-                          <span className="text-xs font-bold uppercase tracking-wider text-indigo-500 dark:text-indigo-400 block mb-1">Challenge</span>
-                          <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{project.problem}</p>
-                        </div>
-                      )}
-                      {project.solution && (
-                        <div>
-                          <span className="text-xs font-bold uppercase tracking-wider text-emerald-500 dark:text-emerald-400 block mb-1">Solution</span>
-                          <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{project.solution}</p>
-                        </div>
-                      )}
-                    </div>
-                  )}
-
-                  {/* Tech Stack Highlights */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2.5 py-1 bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20 rounded text-indigo-700 dark:text-indigo-300 text-xs font-medium"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Badges */}
-                  {project.badges && (
-                    <div className="flex flex-wrap gap-2 mb-8">
-                      {project.badges.map((badge) => (
-                        <span key={badge} className="px-2 py-1 bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 text-[10px] uppercase tracking-wider font-bold rounded-md">
-                          {badge}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Links */}
-                  <div className="flex flex-wrap items-center gap-4 mt-auto">
-                    {project.githubLink && (
-                      <a
-                        href={project.githubLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-[#0F172A] dark:bg-white/10 text-white font-semibold rounded-xl hover:bg-gray-800 dark:hover:bg-white/20 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
-                      >
-                        <Github className="w-5 h-5" />
-                        <span className="text-sm md:text-base">Source Code</span>
-                      </a>
-                    )}
-                    {project.liveLink && (
-                      <a
-                        href={project.liveLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-[var(--primary)] text-white font-semibold rounded-xl hover:bg-[var(--accent-blue)] transition-all duration-300 hover:shadow-md hover:-translate-y-0.5"
-                      >
-                        <ExternalLink className="w-5 h-5" />
-                        <span className="text-sm md:text-base">Live Demo</span>
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+            <ProjectCard key={project.id} project={project} index={index} isInView={isInView} />
           ))}
         </div>
       </div>
