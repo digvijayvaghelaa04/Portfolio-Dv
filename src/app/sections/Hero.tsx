@@ -121,7 +121,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
-          className="flex flex-wrap justify-center gap-3 md:gap-5 mb-10 md:mb-12 max-w-4xl mx-auto"
+          className="hidden sm:flex flex-wrap justify-center gap-3 md:gap-5 mb-10 md:mb-12 max-w-4xl mx-auto"
         >
           {[
             { icon: "⚡", title: "React &", subtitle: "MERN Stack" },
