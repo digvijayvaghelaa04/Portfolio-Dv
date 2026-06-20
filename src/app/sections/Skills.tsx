@@ -73,7 +73,7 @@ export function Skills() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.4 }}
-              className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-6"
+              className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"
             >
               {activeSkills.map((skill, index) => (
                 <motion.div
@@ -83,7 +83,7 @@ export function Skills() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="group"
                 >
-                  <div className="p-6 glass-card hover:border-[var(--border-light)] transition-all duration-300 rounded-3xl hover:shadow-xl shadow-sm relative overflow-hidden z-10 flex flex-col gap-4 hover:-translate-y-1">
+                  <div className="p-8 glass-card hover:border-[var(--border-light)] transition-all duration-300 rounded-3xl hover:shadow-xl shadow-sm relative overflow-hidden z-10 flex flex-col gap-6 hover:-translate-y-1 min-h-[140px] justify-center">
                     <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/5 dark:from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <div className="relative z-10 flex items-center gap-4 w-full">
                       <span className="text-4xl drop-shadow-sm">{skill.icon}</span>
