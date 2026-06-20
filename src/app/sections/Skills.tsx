@@ -1,18 +1,21 @@
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { useInView } from "motion/react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { portfolioData } from "../data/portfolio-data";
 
 export function Skills() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [activeTab, setActiveTab] = useState<"frontend" | "backend" | "tools" | "aiTools">("frontend");
 
-  const categories = [
+  const tabs = [
     { id: "frontend" as const, label: "Frontend", icon: "⚛️" },
     { id: "backend" as const, label: "Backend", icon: "🚀" },
     { id: "tools" as const, label: "Tools", icon: "🛠️" },
     { id: "aiTools" as const, label: "AI Tools", icon: "🤖" },
   ];
+
+  const activeSkills = portfolioData.skills[activeTab];
 
   return (
     <section
@@ -29,7 +32,7 @@ export function Skills() {
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-16"
         >
           <h2 className="text-sm uppercase tracking-widest text-indigo-500 dark:text-indigo-400 mb-4 font-semibold">Skills & Expertise</h2>
           <h3 className="font-bold text-gray-900 dark:text-white mb-6">
@@ -38,48 +41,73 @@ export function Skills() {
           <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 dark:from-indigo-400 dark:to-purple-500 mx-auto rounded-full" />
         </motion.div>
 
-        {/* Grouped Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {categories.map((category, categoryIndex) => (
-            <motion.div
-              key={category.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.2 + categoryIndex * 0.1 }}
-              className="glass-card p-8 rounded-3xl hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+        {/* Tabs */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex flex-wrap justify-center gap-4 mb-16"
+        >
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 flex items-center justify-center ${
+                activeTab === tab.id
+                  ? "bg-[var(--text-main)] text-white shadow-md transform scale-105"
+                  : "glass-card text-gray-600 dark:text-gray-400 hover:text-[var(--primary)] dark:hover:text-[var(--primary)] hover:border-[var(--primary)]/50"
+              }`}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/5 dark:from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
-              <div className="relative z-10">
-                <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 flex items-center gap-3">
-                  <span className="text-3xl">{category.icon}</span>
-                  {category.label}
-                </h4>
-                
-                <div className="flex flex-col gap-6">
-                  {portfolioData.skills[category.id].map((skill, index) => (
-                    <div key={skill.name} className="flex flex-col gap-2">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <span className="text-lg">{skill.icon}</span>
-                          <span className="font-semibold text-gray-800 dark:text-gray-200">{skill.name}</span>
+              <span className="mr-2 text-xl">{tab.icon}</span>
+              {tab.label}
+            </button>
+          ))}
+        </motion.div>
+
+        {/* Skills Grid */}
+        <div className="max-w-5xl mx-auto min-h-[400px]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.4 }}
+              className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-6"
+            >
+              {activeSkills.map((skill, index) => (
+                <motion.div
+                  key={skill.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="group"
+                >
+                  <div className="p-6 glass-card hover:border-[var(--border-light)] transition-all duration-300 rounded-3xl hover:shadow-xl shadow-sm relative overflow-hidden z-10 flex flex-col gap-4 hover:-translate-y-1">
+                    <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/5 dark:from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="relative z-10 flex items-center gap-4 w-full">
+                      <span className="text-4xl drop-shadow-sm">{skill.icon}</span>
+                      <div className="flex-1 flex flex-col gap-2">
+                        <div className="flex items-center justify-between">
+                          <h4 className="font-bold text-gray-900 dark:text-white tracking-wide">{skill.name}</h4>
+                          <span className="text-sm font-semibold text-[var(--primary)]">{skill.level}%</span>
                         </div>
-                        <span className="text-sm font-bold text-indigo-600 dark:text-indigo-400">{skill.level}%</span>
-                      </div>
-                      <div className="w-full h-2 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden">
-                        <motion.div 
-                          initial={{ width: 0 }}
-                          animate={isInView ? { width: `${skill.level}%` } : {}}
-                          transition={{ duration: 1, delay: 0.4 + index * 0.1, ease: "easeOut" }}
-                          className="h-full bg-gradient-to-r from-[var(--grad-1-start)] to-[var(--grad-1-end)] rounded-full"
-                        />
+                        <div className="w-full h-2.5 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
+                          <motion.div 
+                            initial={{ width: 0 }}
+                            animate={{ width: `${skill.level}%` }}
+                            transition={{ duration: 1, delay: 0.2 + index * 0.1, ease: "easeOut" }}
+                            className="h-full bg-gradient-to-r from-[var(--grad-1-start)] to-[var(--grad-1-end)] rounded-full relative overflow-hidden"
+                          >
+                          </motion.div>
+                        </div>
                       </div>
                     </div>
-                  ))}
-                </div>
-              </div>
+                  </div>
+                </motion.div>
+              ))}
             </motion.div>
-          ))}
+          </AnimatePresence>
         </div>
       </div>
     </section>

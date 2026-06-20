@@ -124,13 +124,13 @@ export function Hero() {
           className="flex flex-wrap justify-center gap-3 md:gap-5 mb-10 md:mb-12 max-w-4xl mx-auto"
         >
           {[
-            { icon: Code2, title: "3+ Projects", subtitle: "Completed" },
-            { icon: Briefcase, title: "Freelance", subtitle: "Available" },
-            { icon: GraduationCap, title: "MCA", subtitle: "Class of 2026" }
+            { icon: "⚡", title: "React &", subtitle: "MERN Stack" },
+            { icon: "🚀", title: "Freelance", subtitle: "Available" },
+            { icon: "🎓", title: "MCA", subtitle: "Class of 2026" }
           ].map((stat, i) => (
-            <div key={i} className="flex items-center gap-3 bg-white/50 dark:bg-[#1E293B]/50 border border-gray-200 dark:border-white/10 px-4 py-3 rounded-2xl backdrop-blur-sm shadow-sm hover:shadow-md transition-all hover:-translate-y-1 w-full sm:w-auto min-w-[180px]">
-              <div className="w-10 h-10 rounded-full bg-[var(--primary)]/10 dark:bg-[var(--primary)]/20 flex items-center justify-center text-[var(--primary)] shrink-0">
-                <stat.icon className="w-5 h-5" />
+            <div key={i} className="flex items-center gap-3 bg-white/50 dark:bg-[#1E293B]/50 border border-gray-200 dark:border-white/10 px-5 py-3.5 rounded-2xl backdrop-blur-sm shadow-sm hover:shadow-md transition-all hover:-translate-y-1 w-full sm:w-auto min-w-[190px]">
+              <div className="w-10 h-10 rounded-full bg-[var(--primary)]/10 dark:bg-[var(--primary)]/20 flex items-center justify-center text-xl shrink-0">
+                {stat.icon}
               </div>
               <div className="text-left">
                 <h3 className="font-bold text-sm text-gray-900 dark:text-white leading-tight">{stat.title}</h3>
