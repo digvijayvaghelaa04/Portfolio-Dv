@@ -80,6 +80,25 @@ export function Services() {
             </motion.div>
           ))}
         </div>
+        
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="mt-16 flex justify-center"
+        >
+          <button
+            onClick={() => {
+              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="group relative flex items-center justify-center gap-3 px-10 py-4 bg-[var(--text-main)] text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:bg-[var(--primary)] shadow-md hover:shadow-xl hover:-translate-y-1"
+          >
+            <span className="text-lg">Start a Project</span>
+            <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </button>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,10 +1,25 @@
-import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
-import { ArrowRight, Github, Linkedin, Mail, Download, Instagram } from "lucide-react";
+import { useState, useEffect } from "react";
+import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "motion/react";
+import { ArrowRight, Github, Linkedin, Mail, Download, Instagram, Briefcase, GraduationCap, Code2 } from "lucide-react";
 import { SnapchatIcon } from "../components/icons/SnapchatIcon";
 import { portfolioData } from "../data/portfolio-data";
 import cvPdf from "../../imports/Digvijay_Vaghela_CV.pdf.pdf";
 
 export function Hero() {
+  const [currentRole, setCurrentRole] = useState(0);
+  const roles = [
+    "Full Stack Developer",
+    "React Developer",
+    "Freelance Web Developer"
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentRole((prev) => (prev + 1) % roles.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({ behavior: "smooth" });
@@ -80,16 +95,49 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          className="mb-8"
         >
-          <h2 className="font-semibold mb-6 text-gray-600 dark:text-gray-400">
-            {portfolioData.personal.role}
-          </h2>
-          <p className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-4">
+          <div className="h-[32px] overflow-hidden mb-4 flex justify-center">
+            <AnimatePresence mode="wait">
+              <motion.h2
+                key={currentRole}
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -20, opacity: 0 }}
+                transition={{ duration: 0.4 }}
+                className="font-semibold text-lg md:text-xl text-gray-600 dark:text-gray-300"
+              >
+                {roles[currentRole]}
+              </motion.h2>
+            </AnimatePresence>
+          </div>
+          <p className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
             {portfolioData.personal.tagline}. {portfolioData.personal.description}
           </p>
-          <p className="text-emerald-600 dark:text-emerald-400 max-w-3xl mx-auto mb-10 font-medium">
-            Available for freelance projects, business websites, portfolio websites, and custom web applications.
-          </p>
+        </motion.div>
+
+        {/* Stats Cards */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
+          className="flex flex-wrap justify-center gap-3 md:gap-5 mb-10 md:mb-12 max-w-4xl mx-auto"
+        >
+          {[
+            { icon: Code2, title: "3+ Projects", subtitle: "Completed" },
+            { icon: Briefcase, title: "Freelance", subtitle: "Available" },
+            { icon: GraduationCap, title: "MCA", subtitle: "Class of 2026" }
+          ].map((stat, i) => (
+            <div key={i} className="flex items-center gap-3 bg-white/50 dark:bg-[#1E293B]/50 border border-gray-200 dark:border-white/10 px-4 py-3 rounded-2xl backdrop-blur-sm shadow-sm hover:shadow-md transition-all hover:-translate-y-1 w-full sm:w-auto min-w-[180px]">
+              <div className="w-10 h-10 rounded-full bg-[var(--primary)]/10 dark:bg-[var(--primary)]/20 flex items-center justify-center text-[var(--primary)] shrink-0">
+                <stat.icon className="w-5 h-5" />
+              </div>
+              <div className="text-left">
+                <h3 className="font-bold text-sm text-gray-900 dark:text-white leading-tight">{stat.title}</h3>
+                <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">{stat.subtitle}</p>
+              </div>
+            </div>
+          ))}
         </motion.div>
 
         {/* Custom Premium CTA Buttons */}

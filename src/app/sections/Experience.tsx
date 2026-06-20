@@ -120,7 +120,7 @@ export function Experience() {
                         </p>
 
                         {/* Achievements */}
-                        <div className="space-y-4">
+                        <div className="space-y-4 mb-6">
                           {item.achievements.map((achievement, i) => (
                             <motion.div
                               key={i}
@@ -139,6 +139,17 @@ export function Experience() {
                             </motion.div>
                           ))}
                         </div>
+
+                        {/* Skill Badges */}
+                        {item.skills && (
+                          <div className="flex flex-wrap gap-2 pt-4 border-t border-gray-100 dark:border-white/10">
+                            {item.skills.map((skill, i) => (
+                              <span key={i} className="px-2.5 py-1 bg-[var(--primary)]/10 text-[var(--primary)] text-xs font-semibold rounded-md">
+                                {skill}
+                              </span>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>

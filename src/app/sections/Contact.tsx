@@ -208,7 +208,32 @@ export function Contact() {
               ))}
             </div>
 
-            {/* Social Links */}
+            {/* Direct Actions */}
+            <div className="flex flex-wrap gap-4 mb-12 mt-8">
+              <a
+                href={`mailto:${portfolioData.personal.email}`}
+                className="flex-1 min-w-[140px] flex items-center justify-center gap-2 px-5 py-3 bg-[var(--primary)] text-white rounded-xl font-bold hover:bg-[var(--accent-blue)] transition-all duration-300 hover:shadow-md hover:-translate-y-0.5"
+              >
+                <Mail className="w-5 h-5" />
+                Email Me
+              </a>
+              <a
+                href={`tel:${portfolioData.personal.phone}`}
+                className="flex-1 min-w-[140px] flex items-center justify-center gap-2 px-5 py-3 bg-[#0F172A] dark:bg-white/10 text-white rounded-xl font-bold hover:bg-gray-800 dark:hover:bg-white/20 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5"
+              >
+                <Phone className="w-5 h-5" />
+                Call Me
+              </a>
+              <a
+                href="https://wa.me/916356043003"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 min-w-[140px] flex items-center justify-center gap-2 px-5 py-3 bg-emerald-500 text-white rounded-xl font-bold hover:bg-emerald-600 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5"
+              >
+                <Send className="w-5 h-5" />
+                WhatsApp Me
+              </a>
+            </div>
             <div>
               <h5 className="text-lg font-bold text-gray-900 dark:text-white mb-6">
                 Follow Me

@@ -102,17 +102,35 @@ export function Projects() {
 
                 {/* Content */}
                 <div className="p-8 flex flex-col flex-grow">
-                  <h4 className="font-bold text-gray-900 dark:text-white mb-3 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                  <h4 className="font-bold text-xl text-gray-900 dark:text-white mb-3 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                     {project.title}
                   </h4>
 
-                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-6 line-clamp-4 leading-relaxed flex-grow">
+                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-5 leading-relaxed">
                     {project.description}
                   </p>
 
+                  {/* Case Study Details */}
+                  {(project.problem || project.solution) && (
+                    <div className="mb-6 space-y-4 bg-gray-50 dark:bg-[#0F172A]/50 p-5 rounded-2xl border border-gray-100 dark:border-white/5 flex-grow">
+                      {project.problem && (
+                        <div>
+                          <span className="text-xs font-bold uppercase tracking-wider text-indigo-500 dark:text-indigo-400 block mb-1">Challenge</span>
+                          <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{project.problem}</p>
+                        </div>
+                      )}
+                      {project.solution && (
+                        <div>
+                          <span className="text-xs font-bold uppercase tracking-wider text-emerald-500 dark:text-emerald-400 block mb-1">Solution</span>
+                          <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{project.solution}</p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
                   {/* Tech Stack Highlights */}
-                  <div className="flex flex-wrap gap-2 mb-8">
-                    {project.technologies.slice(0, 4).map((tech) => (
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.map((tech) => (
                       <span
                         key={tech}
                         className="px-2.5 py-1 bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20 rounded text-indigo-700 dark:text-indigo-300 text-xs font-medium"
@@ -120,12 +138,18 @@ export function Projects() {
                         {tech}
                       </span>
                     ))}
-                    {project.technologies.length > 4 && (
-                      <span className="px-2.5 py-1 text-gray-400 text-xs font-medium border border-transparent">
-                        +{project.technologies.length - 4} more
-                      </span>
-                    )}
                   </div>
+
+                  {/* Badges */}
+                  {project.badges && (
+                    <div className="flex flex-wrap gap-2 mb-8">
+                      {project.badges.map((badge) => (
+                        <span key={badge} className="px-2 py-1 bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 text-[10px] uppercase tracking-wider font-bold rounded-md">
+                          {badge}
+                        </span>
+                      ))}
+                    </div>
+                  )}
 
                   {/* Links */}
                   <div className="flex flex-wrap items-center gap-4 mt-auto">

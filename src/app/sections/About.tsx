@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef } from "react";
-import { Code2, Zap, Target, Heart } from "lucide-react";
+import { Code2, Zap, Target, Heart, MonitorSmartphone, Server, Globe, Palette } from "lucide-react";
 import { portfolioData } from "../data/portfolio-data";
 
 export function About() {
@@ -91,23 +91,28 @@ export function About() {
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,280px),1fr))] gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           {[
             {
-              icon: Code2,
-              title: "Clean Code",
-              description: "Writing maintainable, scalable, and elegant code that stands the test of time.",
+              icon: MonitorSmartphone,
+              title: "Frontend Development",
+              description: "Building responsive, pixel-perfect, and accessible user interfaces using React and modern CSS.",
             },
             {
-              icon: Zap,
-              title: "Performance",
-              description: "Optimizing every millisecond to deliver blazing-fast user experiences.",
+              icon: Server,
+              title: "Full Stack Apps",
+              description: "Developing robust, scalable backend architectures with Node.js, Express, and modern databases.",
             },
             {
-              icon: Target,
-              title: "Precision",
-              description: "Attention to detail in every pixel, ensuring pixel-perfect implementations.",
+              icon: Globe,
+              title: "Freelance Websites",
+              description: "Creating premium portfolio, business, and e-commerce websites tailored to client needs.",
+            },
+            {
+              icon: Palette,
+              title: "UI Improvements",
+              description: "Refining designs, adding micro-interactions, and improving overall user experience.",
             },
           ].map((item, index) => (
             <motion.div
