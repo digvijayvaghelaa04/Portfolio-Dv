@@ -6,12 +6,12 @@
     margin: 0;
     width: 1200px;
     height: 630px;
-    background: linear-gradient(135deg, #0F172A 0%, #050505 100%);
+    background: linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 100%);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: #0F172A;
     overflow: hidden;
     position: relative;
   }
@@ -22,7 +22,7 @@
     left: -10%;
     width: 60%;
     height: 80%;
-    background: radial-gradient(circle, rgba(108, 76, 241, 0.25) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(108, 76, 241, 0.1) 0%, transparent 70%);
     border-radius: 50%;
   }
   
@@ -32,14 +32,14 @@
     right: -10%;
     width: 70%;
     height: 80%;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
     border-radius: 50%;
   }
   
   .grid {
     position: absolute;
     inset: 0;
-    background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-image: linear-gradient(to right, rgba(15,23,42,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(15,23,42,0.03) 1px, transparent 1px);
     background-size: 40px 40px;
   }
 
@@ -50,53 +50,61 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 25px;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 60px 100px;
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+    backdrop-filter: blur(10px);
   }
 
   .avatar {
-    width: 140px;
-    height: 140px;
-    background: linear-gradient(135deg, #6C4CF1, #8B5CF6);
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 60px;
-    font-weight: 800;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    border: 4px solid rgba(255,255,255,0.15);
-    letter-spacing: -2px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    border: 4px solid white;
+    margin-bottom: 10px;
+    background: white;
+  }
+  
+  .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   h1 {
-    font-size: 85px;
+    font-size: 72px;
     margin: 0;
     font-weight: 800;
     letter-spacing: -2px;
-    text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    color: #0F172A;
   }
 
   h2 {
-    font-size: 42px;
+    font-size: 32px;
     margin: 0;
-    color: #94A3B8;
+    color: #475569;
     font-weight: 500;
     letter-spacing: -0.5px;
   }
 
   .badges {
     display: flex;
-    gap: 20px;
-    margin-top: 20px;
+    gap: 16px;
+    margin-top: 15px;
   }
 
   .badge {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.15);
-    padding: 12px 28px;
+    background: #F1F5F9;
+    border: 1px solid #E2E8F0;
+    padding: 10px 24px;
     border-radius: 40px;
-    font-size: 22px;
-    color: #cbd5e1;
+    font-size: 20px;
+    color: #334155;
     font-weight: 600;
     letter-spacing: 0.5px;
   }
@@ -108,9 +116,11 @@
   <div class="accent-2"></div>
   
   <div class="content">
-    <div class="avatar">DV</div>
+    <div class="avatar">
+      <img src="file:///C:/Users/dv735/Desktop/Final/Cinematic Personal Portfolio Website/src/imports/images/IMG_0133.png" alt="DV" />
+    </div>
     <h1>Digvijay Vaghela</h1>
-    <h2>Full Stack Developer <span style="color: #6C4CF1">|</span> React Developer</h2>
+    <h2>Full Stack Developer <span style="color: #6C4CF1; margin: 0 10px;">|</span> React Developer</h2>
     <div class="badges">
       <div class="badge">React</div>
       <div class="badge">Node.js</div>
